@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Horizontal Bar Chart</title>
+  <style>
+    svg {
+      background-color: #f7f7f7;
+    }
+
+    rect {
+      fill: steelblue;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label>Platform:</label>
+    <input type="radio" id="amazon" name="platform" value="amazon" checked>
+    <label for="amazon">Amazon</label>
+    <input type="radio" id="hulu" name="platform" value="hulu">
+    <label for="hulu">Hulu</label>
+    <input type="radio" id="disney" name="platform" value="disney">
+    <label for="disney">Disney</label>
+    <input type="radio" id="netflix" name="platform" value="netflix">
+    <label for="netflix">Netflix</label>
+  </div>
+
+  <div>
+    <label>Type:</label>
+    <input type="radio" id="movie" name="type" value="movie" checked>
+    <label for="movie">Movie</label>
+    <input type="radio" id="tv show" name="type" value="tv show">
+    <label for="tv show">TV Show</label>
+  </div>
+
+  <svg id="chart"></svg>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+  // Set up the chart dimensions
+    const chartWidth = 600;
+    const chartHeight = 400;
+    const barHeight = 40;
+    const margin = { top: 20, right: 20, bottom: 20, left: 150 };
+
+    // Create the SVG container
+    const svg = d3.select("#chart")
+      .attr("width", chartWidth)
+      .attr("height", chartHeight);
+
+    // Read the CSV file and generate the chart
+    d3.csv("StreamingPlatform.csv").then(function(data) {
+// Define the function to update the chart based on the selected filters
+function updateChart() {
+  const selectedPlatform = document.querySelector('input[name="platform"]:checked').value;
+  const selectedType = document.querySelector('input[name="type"]:checked').value;
+
+  // Filter the data by platform, type, and exclude unknown directors
+  const filteredData = data.filter(item => item.platform === selectedPlatform && item.type.toLowerCase() === selectedType && item.cast !== "Unknown");
+
+  /* Group and aggregate the data by cast members
+  const castData = [];
+  filteredData.forEach(item => {
+    const movie = item.type === 'Movie' ? item : item.tvShow;
+    castMembers.forEach(castMember => {
+      const castEntry = castData.find(entry => entry.castMember === castMember);
+      if (castEntry) {
+        if (!castEntry.titles.includes(movie.title)) {
+          castEntry.count += 1;
+          castEntry.titles.push(movie.title);
+        }
+      } else {
+        castData.push({
+          castMember,
+          count: 1,
+          titles: [movie.title]
+        });
+      }
+    });
+  });
+  */
+  const castData = [];
+        filteredData.forEach(movie => {
+          const castEntry = castData.find(entry => entry.cast === movie.cast);
+          if (castEntry) {
+            if (!castEntry.titles.includes(movie.title)) {
+              castEntry.count += 1;
+              castEntry.titles.push(movie.title);
+            }
+          } else {
+            castData.push({
+              cast: movie.cast,
+              count: 1,
+              titles: [movie.title]
+            });
+          }
+        });
+
+  // Sort the data in descending order based on the count of distinct titles
+  castData.sort((a, b) => b.count - a.count);
+
+  // Select the top 3 cast members
+  const topThreeCast = castData.slice(0, 10);
+
+  // Create the scales
+  const xScale = d3.scaleLinear()
+    .domain([0, d3.max(topThreeCast, d => d.count)])
+    .range([margin.left, chartWidth - margin.right]);
+
+  const yScale = d3.scaleBand()
+    .domain(topThreeCast.map(d => d.cast))
+    .range([margin.top, chartHeight - margin.bottom])
+    .padding(0.1);
+
+  // Create the bars
+  svg.selectAll("rect").remove(); // Clear previous bars
+  svg.selectAll("rect")
+    .data(topThreeCast)
+    .enter()
+    .append("rect")
+    .attr("x", margin.left)
+    .attr("y", d => yScale(d.cast))
+    .attr("width", d => xScale(d.count) - margin.left)
+    .attr("height", yScale.bandwidth());
+
+  // Create the axes
+  const xAxis = d3.axisBottom(xScale);
+  const yAxis = d3.axisLeft(yScale);
+
+  svg.select(".x-axis").remove(); // Clear previous x-axis
+  svg.select(".y-axis").remove(); // Clear previous y-axis
+
+  svg.append("g")
+    .attr("class", "x-axis")
+    .attr("transform", `translate(0, ${chartHeight - margin.bottom})`)
+    .call(xAxis);
+
+  svg.append("g")
+    .attr("class", "y-axis")
+    .attr("transform", `translate(${margin.left}, 0)`)
+    .call(yAxis);
+}
+// Add event listeners to the radio buttons
+      const platformRadioButtons = document.querySelectorAll('input[name="platform"]');
+      platformRadioButtons.forEach(button => {
+        button.addEventListener("change", updateChart);
+      });
+
+      const typeRadioButtons = document.querySelectorAll('input[name="type"]');
+      typeRadioButtons.forEach(button => {
+        button.addEventListener("change", updateChart);
+      });
+
+      // Initialize the chart
+      updateChart();
+    }).catch(function(error) {
+      // Handle any errors that occur during the data loading
+      console.log(error);
+    });
+  </script>
+</body>
+</html>
