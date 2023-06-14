@@ -6,17 +6,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    flex-direction: row;
     flex-wrap: wrap;
   }
   
-  .pie {
-    width: 50%;
-    height: 200px;
-    /* margin: 25px; */
-    justify-content: center;
-    position: relative;
-  }
+.pie {
+width: 40%;
+height: 200px;
+margin: 10px;
+position: relative;
+}
 
 .pie path:hover {
     transform: scale(1.1); /* Increase the scale value to adjust the floating effect */
@@ -34,6 +32,7 @@ body {
 
 .pie-container .title,
 .stackedBar-container .title,
+.totalMovies-container .title,
 .lineMT-container .title {
     color: rgb(255, 255, 167);
     font-size: 25px;
@@ -45,6 +44,7 @@ body {
     justify-content: space-between;
     height: 500px;
   }
+
 .stackedBar-container {
     display: flex;
     flex-direction: column;
@@ -81,6 +81,7 @@ body {
 
 .pie-container,
 .stackedBar-container,
+.totalMovies-container,
 .lineMT-container {
   flex: 1;
   margin-right: 10px;
@@ -90,3 +91,27 @@ body {
   padding: 10px; /* Add padding for spacing */
 }
 
+.tabcontent .Overview{
+    color: rgb(229, 5, 5);
+  font-size: 45px;
+  margin-top: 10px;
+  width: 300px;
+  text-align: center;
+  border: 2px solid rgba(213, 3, 3, 0.54);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.totalMovies-container {
+    text-align: center;
+    border: 2px solid rgba(213, 3, 3, 0.54);
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .totalMovies-container .title {
+    color: rgb(255, 255, 167);
+    font-size: 25px;
+    margin-top: 0;
+  }
+  
