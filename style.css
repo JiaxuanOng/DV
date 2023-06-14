@@ -1,0 +1,92 @@
+body {
+    background-color: rgba(0, 0, 0, 0.811);
+}
+
+.pie-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .pie {
+    width: 50%;
+    height: 200px;
+    /* margin: 25px; */
+    justify-content: center;
+    position: relative;
+  }
+
+.pie path:hover {
+    transform: scale(1.1); /* Increase the scale value to adjust the floating effect */
+    transition: transform 0.3s ease; /* Adjust the transition duration and easing as desired */
+}
+
+.stackedBar {
+    width: 400px;
+    height: 400px;
+}
+
+.legend {
+    font-size: 12px;
+}
+
+.pie-container .title,
+.stackedBar-container .title,
+.lineMT-container .title {
+    color: rgb(255, 255, 167);
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+  }
+.stackedBar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.custom-alignment select {
+    display: block;
+    width: 15%;
+    padding: 5px;
+    border: 4px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .axis text {
+    fill: white;
+  }
+  
+  .lineMT {
+    width: 400px;
+    height: 800px;
+  }
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.pie-container,
+.stackedBar-container,
+.lineMT-container {
+  flex: 1;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
+  border: 2px solid rgba(213, 3, 3, 0.54); /* Add red border */
+  padding: 10px; /* Add padding for spacing */
+}
+
