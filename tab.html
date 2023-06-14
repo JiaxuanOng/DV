@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="tablinks" onclick="openTab(event, 'Overview')">Overview</button>
+      <button class="tablinks" onclick="openTab(event, 'Tab2')">Tab 2</button>
+    </div>
+
+    <div id="Overview" class="tabcontent">
+      <!-- Dashboard 1 -->
+      <h2>Overview</h2>
+    </div>
+
+    <div id="Tab2" class="tabcontent">
+      <!-- Dashboard 2 -->
+      <h2>test2</h2>
+    </div>
+<!-- 
+    <div id="Tab3" class="tabcontent">
+      <div class="custom-alignment">
+        <h2>
+          Monthly Comparison of Airline Prices across Countries: Visualizing
+          Data in a Barplot
+        </h2>
+        <label for="from-country-select">From Country:</label>
+        <select id="from-country-select"></select>
+      </div>
+      <div class="custom-alignment">
+        <label for="dest-country-select">Destination Country:</label>
+        <select id="dest-country-select"></select>
+      </div>
+      <div class="custom-alignment">
+        <label for="sorting-select">Sort According to:</label>
+        <select id="sorting-select">
+          <option value="airlineAsc">Airline (A-Z)</option>
+          <option value="airlineDesc">Airline (Z-A)</option>
+          <option value="priceAsc">($) Price (Low to High)</option>
+          <option value="priceDesc">($) Price (High to Low)</option>
+        </select>
+      </div>
+      <svg height="670" width="1100"></svg>
+      <script src="bar.js"></script>
+      <div class="custom-alignment">
+        <h2>
+          CO2 Percentage Comparison: Packed Bubble Plot of Selected Country to All Other
+          Countries
+        </h2>
+        <label for="country">Select a country:</label>
+        <select id="country"></select>
+        <div id="chart"></div>
+        <div class="tooltip2"></div>
+        <script src="bubble.js"></script>
+      </div>
+    </div> -->
+
+    <script>
+        function openTab(event, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+      </script>
+  </body>
+</html>
