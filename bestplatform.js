@@ -219,7 +219,7 @@ function calculateBestPlatform(data) {
 
         tooltipSvg.append("text")
         .attr("class", "chart-title")
-        .attr("x", 30+ width / 2)
+        .attr("x", width / 2)
         .attr("y", margin.top)
         .attr("text-anchor", "middle")
         .text("Total Shows per Platform")
@@ -229,8 +229,8 @@ function calculateBestPlatform(data) {
           })
           .on("mousemove", function () {
             tooltip
-              .style("top", d3.pointer(event)[1] + 10 + "px")
-              .style("left", d3.pointer(event)[0] + 800 + "px");
+              .style("top", d3.pointer(event)[1] + 20 + "px")
+              .style("left", d3.pointer(event)[0] + 700 + "px");
           })
           .on("mouseout", function () {
             tooltip.style("visibility", "hidden");
