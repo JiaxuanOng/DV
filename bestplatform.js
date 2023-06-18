@@ -4,7 +4,7 @@ function calculateBestPlatform(data) {
       v => new Set(v.map(d => d.title)).size,
       d => d.Platform
     );
-  
+
     var platformTitles = d3.rollup(
       data,
       v => Array.from(new Set(v.map(d => d.title))),
@@ -136,6 +136,7 @@ function calculateBestPlatform(data) {
             tooltip.style("visibility", "hidden");
           });
     } else if (bestPlatform === "amazon") {
+        console.log(bestPlatform)
       svgBP
         .append("image")
         .attr("xlink:href", "amazon_logo.png")
