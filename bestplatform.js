@@ -22,56 +22,68 @@ function calculateBestPlatform(data) {
     });
   
     var distinctTitles = platformTitles.get(bestPlatform);
-
+  
     // Create an SVG container for displaying the best platform
     var svgBP = d3
       .select("#bestPlatformContainer")
       .append("svg")
-      .attr("width", 170) // Set the width of the SVG container
+      .attr("width", 370) // Set the width of the SVG container
       .attr("height", 100); // Set the height of the SVG container
   
-
+    var tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("position", "absolute")
+      .style("visibility", "hidden");
+  
     if (bestPlatform === "netflix") {
-    svgBP
+      svgBP
         .append("image")
         .attr("xlink:href", "netflix_logo.png")
-        .attr("width", 100)
-        .attr("height", 100);
-    } else if (bestPlatform === "amazon"){
-        svgBP
+        .attr("width", 300)
+        .attr("height", 90)
+        .attr("x", 30) // Set the x-coordinate for centering the logo
+        .attr("y", 10);
+    } else if (bestPlatform === "amazon") {
+      svgBP
         .append("image")
         .attr("xlink:href", "amazon_logo.png")
-        .attr("width", 100)
-        .attr("height", 100);
-    }
-
-    else if (bestPlatform === "disney"){
-        svgBP
+        .attr("width", 300)
+        .attr("height", 90)
+        .attr("x", 30) // Set the x-coordinate for centering the logo
+        .attr("y", 10)
+        .on("mouseover", function () {
+          tooltip.style("visibility", "visible").html("Total Shows in " + bestPlatform + ": "  + distinctTitles.length);
+        })
+        .on("mousemove", function (event) {
+          tooltip
+            .style("top", d3.pointer(event)[1] + window.pageYOffset + 10 + "px")
+            .style("left", d3.pointer(event)[0] + window.pageXOffset + 900 + "px");
+        })
+        .on("mouseout", function () {
+          tooltip.style("visibility", "hidden");
+        });
+    } else if (bestPlatform === "disney") {
+      svgBP
         .append("image")
         .attr("xlink:href", "disney_logo.png")
-        .attr("width", 100)
-        .attr("height", 100);
-    }
-
-    else if (bestPlatform === "hulu"){
-        svgBP
+        .attr("width", 300)
+        .attr("height", 100)
+        .attr("x", 30) // Set the x-coordinate for centering the logo
+        .attr("y", 10);
+    } else if (bestPlatform === "hulu") {
+      svgBP
         .append("image")
         .attr("xlink:href", "hulu_logo.png")
-        .attr("width", 100)
-        .attr("height", 100);
+        .attr("width", 300)
+        .attr("height", 100)
+        .attr("x", 30) // Set the x-coordinate for centering the logo
+        .attr("y", 10);
     }
-    // Add text to the SVG container
-    // svgBP
-    //   .append("text")
-    //   .attr("x", 80) // Set the x-coordinate of the text
-    //   .attr("y", 75) // Set the y-coordinate of the text
-    //   .text(bestPlatform) // Set the text content to the best platform
-    //   .attr("text-anchor", "middle") // Center align the text horizontally
-    //   .style("font-size", "40px") // Set the font size
-    //   .style("fill", "red"); // Set the text color
   }
   
-  d3.csv("StreamingPlatform.csv").then(function(data) {
+  d3.csv("StreamingPlatform.csv").then(function (data) {
     calculateBestPlatform(data);
   });
   

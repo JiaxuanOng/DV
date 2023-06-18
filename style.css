@@ -42,7 +42,7 @@ position: relative;
 .container {
     display: flex;
     justify-content: space-between;
-    height: 500px;
+    height: 480px;
   }
 
 .stackedBar-container {
@@ -69,16 +69,24 @@ position: relative;
     height: 800px;
   }
 
-.tooltip {
-  position: absolute;
-  pointer-events: none;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #ccc;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
+  .tooltip {
+    position: absolute;
+    visibility: hidden;
+    background-color: rgb(170, 246, 189);
+    color: rgb(7, 7, 7);
+    padding: 5px;
+    font-size: 22px;
+    border-radius: 8px;
+    /* Position the tooltip above the logo picture
+    top: -30px;
+    left: 200px;
+    Add a triangular arrow using borders
+    border-style: solid;
+    border-width: 5px; */
+    border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
+  }
+  
+  
 .pie-container,
 .stackedBar-container,
 .totalMovies-container,
@@ -102,11 +110,18 @@ position: relative;
   margin-right: auto;
 }
 
+.MTcontainer {
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+  }
+
 .totalMovies-container {
     text-align: center;
     border: 2px solid rgba(213, 3, 3, 0.54);
     padding: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-right: 30px; /* Add margin-right to create space between containers */
   }
   
   .totalMovies-container .title {
@@ -114,12 +129,13 @@ position: relative;
     font-size: 15px;
     margin-top: 0;
   }
-
+  
   .totalTVs-container {
     text-align: center;
     border: 2px solid rgba(213, 3, 3, 0.54);
     padding: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-right: 10px; /* Add margin-right to create space between containers */
   }
   
   .totalTVs-container .title {
@@ -127,12 +143,13 @@ position: relative;
     font-size: 15px;
     margin-top: 0;
   }
-
+  
   .bestPlatform-container {
     text-align: center;
     border: 2px solid rgba(213, 3, 3, 0.54);
     padding: 2px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-left: 30px;
   }
   
   .bestPlatform-container .title {
@@ -140,8 +157,13 @@ position: relative;
     font-size: 15px;
     margin-top: 0;
   }
-.MTcontainer {
-    display: flex;
-    justify-content: space-between;
-    height: 200px;
-}
+
+.mttitle{
+    color: rgb(255, 255, 167);
+    font-size: 15px;
+    margin-top: 0;
+  }
+
+  
+
+  

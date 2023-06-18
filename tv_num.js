@@ -19,11 +19,11 @@ function calculateTotalTVs(data) {
     // Add text to the svg2 container
     svgTV
       .append("text")
-      .attr("x", 70) // Set the x-coordinate of the text
+      .attr("x", 90) // Set the x-coordinate of the text
       .attr("y", 75) // Set the y-coordinate of the text
       .text(distinctTVTitles) // Set the text content to the total movies count
       .attr("text-anchor", "middle") // Center align the text horizontally
-      .style("font-size", "40px") // Set the font size
+      .style("font-size", "50px") // Set the font size
       .style("fill", "red"); // Set the text color
   }
   
