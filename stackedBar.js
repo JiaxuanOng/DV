@@ -10,7 +10,7 @@
 d3.csv("StreamingPlatform.csv").then(function(data) {
     // Filter the data for the first 5 genres
     var filteredData = data.filter(d => ["Top1", "Top2", "Top3", "Top4", "Top5"].includes(d.TopNGenre));
-
+    console.log("11");
     // Group the data by genre and platform
     var groupedData = d3.group(filteredData, d => d.listed_in, d => d.Platform);
 

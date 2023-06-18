@@ -105,13 +105,43 @@ position: relative;
 .totalMovies-container {
     text-align: center;
     border: 2px solid rgba(213, 3, 3, 0.54);
-    padding: 10px;
+    padding: 2px;
     margin-bottom: 20px;
   }
   
   .totalMovies-container .title {
     color: rgb(255, 255, 167);
-    font-size: 25px;
+    font-size: 15px;
     margin-top: 0;
   }
+
+  .totalTVs-container {
+    text-align: center;
+    border: 2px solid rgba(213, 3, 3, 0.54);
+    padding: 2px;
+    margin-bottom: 20px;
+  }
   
+  .totalTVs-container .title {
+    color: rgb(255, 255, 167);
+    font-size: 15px;
+    margin-top: 0;
+  }
+
+  .bestPlatform-container {
+    text-align: center;
+    border: 2px solid rgba(213, 3, 3, 0.54);
+    padding: 2px;
+    margin-bottom: 20px;
+  }
+  
+  .bestPlatform-container .title {
+    color: rgb(255, 255, 167);
+    font-size: 15px;
+    margin-top: 0;
+  }
+.MTcontainer {
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
+}

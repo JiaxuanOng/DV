@@ -8,22 +8,22 @@ const margin = {
 };
 
 d3.csv('StreamingPlatform.csv').then(function(data) {
-    const distinctMovieTitles = new Set();
-  const distinctTVShowTitles = new Set();
+//     const distinctMovieTitles = new Set();
+//   const distinctTVShowTitles = new Set();
   
-  data.forEach(function(d) {
-    if (d.type === 'Movie') {
-      distinctMovieTitles.add(d.title);
-    } else if (d.type === 'TV Show') {
-      distinctTVShowTitles.add(d.title);
-    }
-  });
+//   data.forEach(function(d) {
+//     if (d.type === 'Movie') {
+//       distinctMovieTitles.add(d.title);
+//     } else if (d.type === 'TV Show') {
+//       distinctTVShowTitles.add(d.title);
+//     }
+//   });
   
-  const totalDistinctMovies = distinctMovieTitles.size;
-  const totalDistinctTVShows = distinctTVShowTitles.size;
+//   const totalDistinctMovies = distinctMovieTitles.size;
+//   const totalDistinctTVShows = distinctTVShowTitles.size;
   
-  console.log('Total Distinct Movies:', totalDistinctMovies);
-  console.log('Total Distinct TV Shows:', totalDistinctTVShows);
+//   console.log('Total Distinct Movies:', totalDistinctMovies);
+//   console.log('Total Distinct TV Shows:', totalDistinctTVShows);
     // Group the data by platform and type and count the occurrences
     var groupedData = {};
     data.forEach(function(d) {
