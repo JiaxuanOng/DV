@@ -26,3 +26,4 @@ var legendData = [
   .attr("class", "legend-label")
   .style("color", d => d.color)
   .text(d => d.platform);
+
