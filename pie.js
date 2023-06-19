@@ -8,23 +8,6 @@ const margin = {
 };
 
 d3.csv('StreamingPlatform.csv').then(function(data) {
-//     const distinctMovieTitles = new Set();
-//   const distinctTVShowTitles = new Set();
-  
-//   data.forEach(function(d) {
-//     if (d.type === 'Movie') {
-//       distinctMovieTitles.add(d.title);
-//     } else if (d.type === 'TV Show') {
-//       distinctTVShowTitles.add(d.title);
-//     }
-//   });
-  
-//   const totalDistinctMovies = distinctMovieTitles.size;
-//   const totalDistinctTVShows = distinctTVShowTitles.size;
-  
-//   console.log('Total Distinct Movies:', totalDistinctMovies);
-//   console.log('Total Distinct TV Shows:', totalDistinctTVShows);
-    // Group the data by platform and type and count the occurrences
     var groupedData = {};
     data.forEach(function(d) {
         var platform = d.Platform;
@@ -45,17 +28,24 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
     // Define color scale
     var color = d3.scaleOrdinal(d3.schemeSet2);
 
+    // Create tooltip div
+    var tooltipPie = d3.select("body")
+        .append("div")
+        .attr("class", "tooltipPie")
+        .style("position", "absolute")
+        .style("visibility", "hidden");
+
     // Iterate over each platform and create a pie chart
     nestedData.forEach(function(platform, i) {
         var pieId = "pie" + (i + 1);
 
-        var svg = d3.select("#" + pieId)
+        var svgPie = d3.select("#" + pieId)
             .append("svg")
             .attr("width", "100%")
             .attr("height", 200); // Increase the height to accommodate the platform label
 
         var radius = 75;
-        var g = svg.append("g")
+        var g = svgPie.append("g")
             .attr("transform", "translate(" + (radius + 20) + "," + (radius + 30) + ")"); // Adjust the y-coordinate to create space for the platform label
 
         // Create pie layout
@@ -69,15 +59,37 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             .outerRadius(radius);
 
         // Generate pie chart slices
-        var slices = g.selectAll("path")
-            .data(pie(platform.values))
-            .enter()
-            .append("path")
-            .attr("d", arc)
-            .attr("fill", function(d, index) { return color(index); });
+        // Generate pie chart slices
+// Generate pie chart slices
+var slices = g.selectAll("path")
+    .data(pie(platform.values))
+    .enter()
+    .append("path")
+    .attr("d", arc)
+    .attr("fill", function(d, index) { return color(index); })
+    .on("mouseover", function(event, d) {
+        var x = d3.pointer(event)[0];
+        var y = d3.pointer(event)[1];
+        var tooltipText = "Count of <b>" + d.data[0] + "</b>"+ " in <b>" + platform.key+ "</b>" + ": <h2>" + d.data[1];
+        tooltipPie.style("visibility", "visible")
+            .style("top", y + "px")
+            .style("left", x + "px")
+            .html(tooltipText);
+    })
+    .on("mousemove", function(event) {
+        tooltipPie
+            .style("top", (d3.pointer(event)[1] + 300) + "px")
+            .style("left", (d3.pointer(event)[0] + 40) + "px");
+        console.log("Pieee");
+    })
+    .on("mouseout", function() {
+        tooltipPie.style("visibility", "hidden");
+    });
+
+
 
         // Add platform label
-        svg.append("text")
+        svgPie.append("text")
             .attr("x", radius+25)
             .attr("y", 15) // Adjust the y-coordinate to move the text above the pie charts
             .attr("text-anchor", "middle")
@@ -104,51 +116,5 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             .style("font-size", "10px")
             .style("font-weight", "bold");
     });
-
-    // Create legend
-    // var legend = d3.select("body")
-    //     .append("div")
-    //     .attr("class", "legend");
-
-    // // Add legend for movies
-    // var movieLegend = legend.append("div")
-    //     .style("display", "flex")
-    //     .style("align-items", "center")
-    //     .style("margin-bottom", "5px");
-
-    // movieLegend.append("span")
-    //     .style("width", "10px")
-    //     .style("height", "10px")
-    //     .style("display", "inline-block")
-    //     .style("background-color", color(0))
-    //     .style("margin-right", "5px");
-
-    // movieLegend.append("span")
-    //     .text("Movies");
-
-    // // Add legend for TV shows
-    // var tvShowLegend = legend.append("div")
-    //     .style("display", "flex")
-    //     .style("align-items", "center")
-    //     .style("margin-bottom", "10px");
-
-    // tvShowLegend.append("span")
-    //     .style("width", "10px")
-    //     .style("height", "10px")
-    //     .style("display", "inline-block")
-    //     .style("background-color", color(1))
-    //     .style("margin-right", "5px");
-
-    // tvShowLegend.append("span")
-    //     .text("TV Shows");
-
-    // // Position the legend
-    // var legendWidth = 100;
-    // var legendHeight = nestedData.length * 20;
-    // legend.style("position", "absolute")
-    //     .style("top", "10px")
-    //     .style("left", (300 + 20) + "px")
-    //     .style("width", legendWidth + "px")
-    //     .style("height", legendHeight + "px");
 
 });

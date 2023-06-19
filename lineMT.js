@@ -26,7 +26,7 @@ data.sort(function(a, b) {
     var height = 350 - margin.top - margin.bottom;
 
     // Create the SVG container
-    var svg = d3.select("#lineMT")
+    var svgMT = d3.select("#lineMT")
                 .append("svg")
                 .attr("width", width + margin.left + margin.right+100)
                 .attr("height", height + margin.top + margin.bottom+100)
@@ -44,9 +44,9 @@ data.sort(function(a, b) {
 
         .range([height, 0]);
 
-
-    var color = d3.scaleOrdinal(d3.schemeCategory10)
-                  .domain(platforms);
+    var color = d3.scaleOrdinal()
+      .domain(["Netflix", "Amazon Prime", "Disney+", "Hulu"])
+      .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
 
     // Create the line generator
     var line = d3.line()
@@ -65,80 +65,51 @@ data.sort(function(a, b) {
     });
     });
 
-// Transform lines into an array of objects
-var lineData = platforms.map((platform, i) => {
-  return {
-  platform: platform,
-  values: lines[i]
-};
-});
+    // Transform lines into an array of objects
+    var lineData = platforms.map((platform, i) => {
+      return {
+      platform: platform,
+      values: lines[i]
+    };
+    });
 
-// Add the lines
-// Add the lines
-svg.selectAll(".line")
-  .data(lineData)
-  .enter()
-  .append("path")
-  .attr("class", "line")
-  .attr("d", d => line(d.values))
-  .style("fill", "none")
-  .style("stroke", d => color(d.platform))
-  .style("stroke-width", "2px")
-  .on("mouseover", function(event, d) {
-    // Increase the line thickness on hover
-    d3.select(this)
-      .style("stroke-width", "4px");
-  })
-  .on("mouseout", function(event, d) {
-    // Restore the original line thickness on mouseout
-    d3.select(this)
-      .style("stroke-width", "2px");
-  });
+    // Add the lines
+    svgMT.selectAll(".line")
+      .data(lineData)
+      .enter()
+      .append("path")
+      .attr("class", "line")
+      .attr("d", d => line(d.values))
+      .style("fill", "none")
+      .style("stroke", d => color(d.platform))
+      .style("stroke-width", "2px")
+      .on("mouseover", function(event, d) {
+        // Increase the line thickness on hover
+        d3.select(this)
+          .style("stroke-width", "4px");
+      })
+      .on("mouseout", function(event, d) {
+        // Restore the original line thickness on mouseout
+        d3.select(this)
+          .style("stroke-width", "2px");
+      });
 
-// Add the x-axis
-svg.append("g")
-  .attr("class", "axis")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x)
-    .ticks(d3.timeYear.every(10))
-    .tickFormat(d3.timeFormat("%Y")))
-  .selectAll("text")
-  .style("text-anchor", "end")
-  .attr("dx", "-0.8em")
-  .attr("dy", "0.15em")
-  .attr("transform", "rotate(-45)");
+    // Add the x-axis
+    svgMT.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x)
+        .ticks(d3.timeYear.every(10))
+        .tickFormat(d3.timeFormat("%Y")))
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-0.8em")
+      .attr("dy", "0.15em")
+      .attr("transform", "rotate(-45)");
 
-// Add the y-axis
-svg.append("g")
-  .attr("class", "axis")
-  .call(d3.axisLeft(y));
-
-
-//     // Calculate the legend position
-// var legendWidth = 100; // Adjust the width of the legend as desired
-// var legendHeight = platforms.length * 20; // Adjust the height of the legend as desired
-// var legendX = (width - legendWidth) / 2;
-// var legendY = (legendHeight) / 2;
-
-// // Add the legend
-// var legend = svg.selectAll(".legend")
-//   .data(platforms)
-//   .enter()
-//   .append("g")
-//   .attr("class", "legend")
-//   .attr("transform", (d, i) => "translate(" + legendX + "," + (legendY + i * 20) + ")"); // Adjust the legend position
-
-// legend.append("rect")
-//   .attr("x", 0)
-//   .attr("width", 18)
-//   .attr("height", 18)
-//   .style("fill", d => color(d));
-
-// legend.append("text")
-//   .attr("x", 24)
-//   .attr("y", 9)
-//   .attr("dy", ".35em")
-//   .style("text-anchor", "start")
-//   .text(d => d);
+    // Add the y-axis
+    svgMT.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y));
 
 });
