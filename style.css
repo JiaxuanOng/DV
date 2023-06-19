@@ -132,6 +132,7 @@ body {
     border: 2px solid rgba(213, 3, 3, 0.54);
     padding: 2px;
     margin-bottom: 10px;
+    margin-left: 30px;
     margin-right: 30px; /* Add margin-right to create space between containers */
   }
   
@@ -161,6 +162,7 @@ body {
     padding: 2px;
     margin-bottom: 10px;
     margin-left: 30px;
+    margin-right: 30px;
   }
   
   .bestPlatform-container .title {
@@ -227,4 +229,9 @@ body {
   height: 20px;
   border-radius: 50%;
   margin: 2px;
+}
+.genre-title {
+  font-size: 12px;
+  font-weight: bold;
+  fill: rgb(5, 5, 5);
 }

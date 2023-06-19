@@ -26,37 +26,39 @@ d3.csv("StreamingPlatform.csv").then(function (data) {
       .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
   
     // Function to generate the HTML markup for the pie chart
-    function createPieChartHTML(data, genre) {
-      var radius = 100;
-      var diameter = radius * 2;
+   // Function to generate the HTML markup for the pie chart
+function createPieChartHTML(data, genre) {
+    var radius = 100;
+    var diameter = radius * 2;
   
-      var svg = `<svg width="${diameter}" height="${diameter}" class="pie-chartSB">`;
+    var svg = `<svg width="${diameter}" height="${diameter}" class="pie-chartSB">`;
   
-      var pie = d3.pie()
-        .value(d => d.count)
-        .sort(null);
+    var pie = d3.pie()
+      .value(d => d.count)
+      .sort(null);
   
-      var arc = d3.arc().innerRadius(0).outerRadius(radius);
+    var arc = d3.arc().innerRadius(0).outerRadius(radius);
   
-      var arcs = pie(data);
+    var arcs = pie(data);
   
-      var colorScale = d3.scaleOrdinal()
-        .domain(data.map(d => d.platform))
-        .range(color.range());
+    var colorScale = d3.scaleOrdinal()
+      .domain(data.map(d => d.platform))
+      .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
   
-      svg += `<g transform="translate(${radius},${radius})">`;
-      svg += `<text x="0" y="-${radius}" text-anchor="middle" class="genre-title">${genre}</text>`;
-      svg += arcs
-        .map(d => {
-          var path = arc(d);
-          return `<path d="${path}" fill="${colorScale(d.data.platform)}"></path>`;
-        })
-        .join("");
-      svg += "</g>";
-      svg += "</svg>";
+    svg += `<g transform="translate(${radius},${radius})">`;
+    svg += `<text x="0" y="-${radius}" text-anchor="middle" class="genre-title">ooooo</text>`;
+    svg += arcs
+      .map(d => {
+        var path = arc(d);
+        return `<path d="${path}" fill="${colorScale(d.data.platform)}"></path>`;
+      })
+      .join("");
+    svg += "</g>";
+    svg += "</svg>";
   
-      return svg;
-    }
+    return svg;
+  }
+  
   
     // Create the SVG container
     var svgSB = d3.select("#stackedBar")

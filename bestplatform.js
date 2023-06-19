@@ -129,8 +129,8 @@ function calculateBestPlatform(data) {
           })
           .on("mousemove", function () {
             tooltip
-              .style("top", d3.pointer(event)[1] + 10 + "px")
-              .style("left", d3.pointer(event)[0] + 800 + "px");
+              .style("top", d3.pointer(event)[1] + 100 + "px")
+              .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
             tooltip.style("visibility", "hidden");
@@ -229,8 +229,8 @@ function calculateBestPlatform(data) {
           })
           .on("mousemove", function () {
             tooltip
-              .style("top", d3.pointer(event)[1] + 20 + "px")
-              .style("left", d3.pointer(event)[0] + 700 + "px");
+              .style("top", d3.pointer(event)[1] + 100 + "px")
+              .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
             tooltip.style("visibility", "hidden");
@@ -327,8 +327,8 @@ function calculateBestPlatform(data) {
           })
           .on("mousemove", function () {
             tooltip
-              .style("top", d3.pointer(event)[1] + 10 + "px")
-              .style("left", d3.pointer(event)[0] + 800 + "px");
+              .style("top", d3.pointer(event)[1] + 100 + "px")
+              .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
             tooltip.style("visibility", "hidden");
@@ -425,8 +425,8 @@ function calculateBestPlatform(data) {
           })
           .on("mousemove", function () {
             tooltip
-              .style("top", d3.pointer(event)[1] + 10 + "px")
-              .style("left", d3.pointer(event)[0] + 800 + "px");
+              .style("top", d3.pointer(event)[1] + 100 + "px")
+              .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
             tooltip.style("visibility", "hidden");
