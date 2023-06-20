@@ -26,7 +26,6 @@ d3.csv("StreamingPlatform.csv").then(function (data) {
       .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
   
     // Function to generate the HTML markup for the pie chart
-   // Function to generate the HTML markup for the pie chart
 function createPieChartHTML(data, genre) {
     var radius = 100;
     var diameter = radius * 2;
