@@ -75,20 +75,21 @@ body {
 
 .tabcontent .Overview{
   color: rgb(255, 255, 167);
-  font-size: 55px;
+  font-size: 65px;
   margin-top: 10px;
-  width: 300px;
+  width: 400px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.54);
   border-radius: 15px;
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
 
 .MTcontainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 150px;
   }
 
@@ -104,12 +105,6 @@ body {
     display: flex;
     flex-direction: column;
     margin-left: 5px;
-  }
-  
-  .legendP-container .title {
-    color: rgb(255, 255, 167);
-    font-size: 15px;
-    margin-top: 0;
   }
 
 .totalMovies-container {
@@ -208,7 +203,7 @@ body {
 .legend-item {
   display: inline-block;
   margin-right: 10px;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
 }
 
 .legend-color {
@@ -220,8 +215,7 @@ body {
 .legend-label {
   display: inline-block;
   margin-left: 5px;
-  font-weight: bold;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .tooltipSB {
@@ -232,6 +226,15 @@ body {
   padding: 10px;
   pointer-events: none;
   opacity: 0;
+}
+.tooltipMT {
+  position: absolute;
+  background-color: rgb(223, 220, 220);
+  color: #000000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  pointer-events: none;
 }
 
 .pie-chartSB {

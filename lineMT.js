@@ -46,8 +46,8 @@ data.sort(function(a, b) {
 
     var color = d3.scaleOrdinal()
       .domain(["Netflix", "Amazon Prime", "Disney+", "Hulu"])
-      .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]);
-
+      .range(["#d62728", "#1f77b4", "#ff7f0e", "#2ca02c"]);
+  
     // Create the line generator
     var line = d3.line()
     .x(d => x(d.year))
@@ -73,26 +73,43 @@ data.sort(function(a, b) {
     };
     });
 
+    var tooltipMT = d3.select("body")
+                      .append("div")
+                      .attr("class", "tooltipMT")
+                      .style("opacity", 0);
+
     // Add the lines
     svgMT.selectAll(".line")
-      .data(lineData)
-      .enter()
-      .append("path")
-      .attr("class", "line")
-      .attr("d", d => line(d.values))
-      .style("fill", "none")
-      .style("stroke", d => color(d.platform))
-      .style("stroke-width", "2px")
-      .on("mouseover", function(event, d) {
-        // Increase the line thickness on hover
-        d3.select(this)
-          .style("stroke-width", "4px");
-      })
-      .on("mouseout", function(event, d) {
-        // Restore the original line thickness on mouseout
-        d3.select(this)
-          .style("stroke-width", "2px");
-      });
+    .data(lineData)
+    .enter()
+    .append("path")
+    .attr("class", "line")
+    .attr("d", d => line(d.values))
+    .style("fill", "none")
+    .style("stroke", d => color(d.platform))
+    .style("stroke-width", "2px")
+    .on("mouseover", function(event, d) {
+      d3.select(this)
+        .style("stroke-width", "4px");
+      var mouseCoordinates = d3.pointer(event);
+      var tooltipX = mouseCoordinates[0] + 1130;
+      var tooltipY = mouseCoordinates[1] + 350;
+      var index = Math.round((mouseCoordinates[0] / width) * (d.values.length - 1));
+      var closestDataPoint = d.values[index];
+      tooltipMT.style("left", tooltipX + "px")
+        .style("top", tooltipY + "px")
+        .style("opacity", 1)
+        .text(closestDataPoint.count);
+    })
+    
+    .on("mouseout", function(event, d) {
+      // Restore the original line thickness on mouseout
+      d3.select(this)
+        .style("stroke-width", "2px");
+    
+      // Hide the tooltip
+      tooltipMT.style("opacity", 0);
+    });
 
     // Add the x-axis
     svgMT.append("g")

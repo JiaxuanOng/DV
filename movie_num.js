@@ -23,7 +23,7 @@ function calculateTotalMovies(data) {
       .text(distinctMovieTitles) // Set the text content to the total movies count
       .attr("text-anchor", "middle") // Center align the text horizontally
       .style("font-size", "50px") // Set the font size
-      .style("fill", "red"); // Set the text color
+      .style("fill", "#f5f7f5"); // Set the text color
   }
   
   d3.csv("StreamingPlatform.csv").then(function(data) {

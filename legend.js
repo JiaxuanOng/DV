@@ -1,9 +1,9 @@
 // Define the legend data
 var legendData = [
-    { platform: "Netflix", color: "#1f77b4" },
-    { platform: "Amazon Prime", color: "#ff7f0e" },
-    { platform: "Disney+", color: "#2ca02c" },
-    { platform: "Hulu", color: "#d62728" }
+    { platform: "Netflix", color: "#d62728" },
+    { platform: "Amazon Prime", color: "#1f77b4"},
+    { platform: "Disney+", color: "#ff7f0e" },
+    { platform: "Hulu", color:  "#2ca02c" }
   ];
   
   // Create the legend container
