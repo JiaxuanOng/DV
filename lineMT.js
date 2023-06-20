@@ -22,8 +22,8 @@ data.sort(function(a, b) {
 
     // Set up the chart dimensions
     var margin = {top: 10, right: 10, bottom: 25, left: 55};
-    var width = 420 - margin.left - margin.right;
-    var height = 350 - margin.top - margin.bottom;
+    var width = 500 - margin.left - margin.right;
+    var height = 500 - margin.top - margin.bottom;
 
     // Create the SVG container
     var svgMT = d3.select("#lineMT")

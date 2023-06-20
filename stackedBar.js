@@ -57,13 +57,16 @@ function createPieChartHTML(data, genre) {
   
     return svg;
   }
-  
-  
+    // Set up the chart dimensions
+    var margin = {top: 10, right: 10, bottom: 25, left: 55};
+    var width = 430 - margin.left - margin.right;
+    var height = 480 - margin.top - margin.bottom;
+
     // Create the SVG container
     var svgSB = d3.select("#stackedBar")
       .append("svg")
-      .attr("width", 20 + width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", 100 + width + margin.left + margin.right)
+      .attr("height", 100+height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   

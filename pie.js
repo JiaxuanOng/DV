@@ -1,5 +1,5 @@
-const height = 300;
-const width = 300;
+const height = 400;
+const width = 500;
 const margin = {
   top: 20,
   right: 65,
@@ -35,18 +35,23 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
         .style("position", "absolute")
         .style("visibility", "hidden");
 
+        var margin = {top: 10, right: 10, bottom: 25, left: 55};
+        var width = 500 - margin.left - margin.right;
+        var height = 500 - margin.top - margin.bottom;
+
     // Iterate over each platform and create a pie chart
     nestedData.forEach(function(platform, i) {
         var pieId = "pie" + (i + 1);
 
         var svgPie = d3.select("#" + pieId)
             .append("svg")
-            .attr("width", "100%")
-            .attr("height", 200); // Increase the height to accommodate the platform label
+            .attr("width", 250)
+            .attr("height", 500); // Increase the height to accommodate the platform label
 
-        var radius = 75;
+        var radius = 90;
+
         var g = svgPie.append("g")
-            .attr("transform", "translate(" + (radius + 20) + "," + (radius + 30) + ")"); // Adjust the y-coordinate to create space for the platform label
+            .attr("transform", "translate(" + (radius + 30) + "," + (radius + 60) + ")"); // Adjust the y-coordinate to create space for the platform label
 
         // Create pie layout
         var pie = d3.pie()
@@ -59,44 +64,56 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             .outerRadius(radius);
 
         // Generate pie chart slices
-        // Generate pie chart slices
-// Generate pie chart slices
-var slices = g.selectAll("path")
-    .data(pie(platform.values))
-    .enter()
-    .append("path")
-    .attr("d", arc)
-    .attr("fill", function(d, index) { return color(index); })
-    .on("mouseover", function(event, d) {
-        var x = d3.pointer(event)[0];
-        var y = d3.pointer(event)[1];
-        var tooltipText = "Count of <b>" + d.data[0] + "</b>"+ " in <b>" + platform.key+ "</b>" + ": <h2>" + d.data[1];
-        tooltipPie.style("visibility", "visible")
+        var slices = g.selectAll("path")
+        .data(pie(platform.values))
+        .enter()
+        .append("path")
+        .attr("d", arc)
+        .attr("fill", function(d, index) { return color(index); })
+        .on("mouseover", function(event, d) {
+            var tooltipText = "Count of <b>" + d.data[0] + "</b>" + " in <b>" + platform.key + "</b>" + ": <h2 style='text-align: center;'>" + d.data[1];
+
+            // Calculate the centroid of the arc
+            var centroid = arc.centroid(d);
+            var x = centroid[0] + width / 2;
+            var y = centroid[1] + height / 2;
+
+            // Check if the selected chart is on the right side
+            if (x > width / 2) {
+            x = x - tooltipPie.node().getBoundingClientRect().width; // Adjust the x position for right-hand side charts
+            }
+
+            tooltipPie.style("visibility", "visible")
             .style("top", y + "px")
             .style("left", x + "px")
             .html(tooltipText);
-    })
-    .on("mousemove", function(event) {
-        tooltipPie
-            .style("top", (d3.pointer(event)[1] + 300) + "px")
-            .style("left", (d3.pointer(event)[0] + 40) + "px");
-        console.log("Pieee");
-    })
-    .on("mouseout", function() {
-        tooltipPie.style("visibility", "hidden");
-    });
+        })
+        .on("mousemove", function(event) {
+            var x = d3.pointer(event)[0];
+            var y = d3.pointer(event)[1];
 
+            // Check if the selected chart is on the right side
+            if (x > width / 2) {
+            x = x - tooltipPie.node().getBoundingClientRect().width; // Adjust the x position for right-hand side charts
+            }
+
+            tooltipPie
+            .style("top", (y + 500) + "px")
+            .style("left", (x + 200) + "px");
+        })
+        .on("mouseout", function() {
+            tooltipPie.style("visibility", "hidden");
+        });
 
 
         // Add platform label
         svgPie.append("text")
-            .attr("x", radius+25)
-            .attr("y", 15) // Adjust the y-coordinate to move the text above the pie charts
+            .attr("x", radius+30)
+            .attr("y", 55) // Adjust the y-coordinate to move the text above the pie charts
             .attr("text-anchor", "middle")
             .text(platform.key)
-            .style("font-size", "15px")
-            .style("fill", "white") // Set the font color to white
-            .style("font-weight", "bold");
+            .style("font-size", "20px")
+            .style("fill", "white"); // Set the font color to white
 
         // Calculate total count for percentage calculation
         var totalCount = d3.sum(platform.values, function(d) { return d[1]; });
@@ -113,7 +130,7 @@ var slices = g.selectAll("path")
                 return percentage + "%";
             })
             .style("text-anchor", "middle")
-            .style("font-size", "10px")
+            .style("font-size", "15px")
             .style("font-weight", "bold");
     });
 
