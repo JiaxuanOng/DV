@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="tablinks" onclick="openTab(event, 'Overview')">Overview</button>
+      <button class="tablinks" onclick="openTab(event, 'Tab2')">Tab 2</button>
+    </div>
+
+    <div id="Overview" class="tabcontent">
+        <!-- Dashboard 1 -->
+        <h1 class="Overview">Overview</h1>
+      
+        <!-- New container for total movies -->
+        <div class="MTcontainer">
+          <div class="legendP-container">
+            <div id="legendPContainer"></div>
+            <script src="legend.js"></script>
+          </div>
+          <div class = "releaseYearContainer">
+            <label>Year:</label> <br>
+            <input type="radio" name="year" value="All Years" checked>All<br>
+            <input type="radio" name="year" value="2019">2019 <br>
+            <input type="radio" name="year" value="2020">2020 <br>
+            <input type="radio" name="year" value="2021">2021 
+          </div>
+          
+  
+        <div class="totalMovies-container">
+          <div id="totalMoviesContainer"></div>
+          <script src="movie_num.js"></script>
+          <h2 class="mttitle">
+            Total Movies
+          </h2>
+        </div>
+        <div class="totalTVs-container">
+            <div id="totalTVsContainer"></div>
+            <script src="tv_num.js"></script>
+            <h2 class="mttitle">
+              Total TV Show
+            </h2>  
+        </div>
+        <div class="totalCasts-container">
+          <div id="totalCastsContainer"></div>
+          <script src="cast_num.js"></script>
+          <h2 class="mttitle">
+            Total Casts
+          </h2>  
+        </div>
+        <div class="totalDirectors-container">
+          <div id="totalDirectorsContainer"></div>
+          <script src="director_num.js"></script>
+          <h2 class="mttitle">
+            Total Directors
+          </h2>  
+        </div>
+        <div class="bestPlatform-container">
+          <div id="bestPlatformContainer"></div>
+          <script src="bestplatform.js"></script>
+          <h2 class="mttitle">
+              Streaming Platform with the Most Movies and TV Shows
+          </h2>
+      </div>
+        </div>
+
+        <div class="container">
+          <div class="pieFrame">
+            <h2 class="title">
+              Distribution of Movies and TV Shows
+            </h2>
+            <div class="pie-grid">
+              <div class="pie-container">
+                <div id="pie1" class="pie"></div>
+              </div>
+              <div class="pie-container">
+                <div id="pie2" class="pie"></div>
+              </div>
+              <div class="pie-container">
+                <div id="pie3" class="pie"></div>
+              </div>
+              <div class="pie-container">
+                <div id="pie4" class="pie"></div>
+              </div>
+              <script src="pie.js"></script>
+            </div>
+          </div>
+          <div class="stackedBar-container">
+            <h2 class="title">
+              Overall Genre Distribution
+            </h2>
+            <div id="stackedBar" class="stackedBar"></div>
+            <script src="stackedBar.js"></script>
+            <script src="legend.js"></script>
+          </div>
+        
+          <div class="lineMT-container">
+            <h2 class="title">
+              Number of Movies and TV Shows
+            </h2>
+            <div id="lineMT" class="lineMT"></div>
+            <script src="lineMT.js"></script>
+          </div>
+        </div>
+      </div>
+
+    <div id="Tab2" class="tabcontent">
+      <!-- Dashboard 2 -->
+      <div class="container2">
+		<header class="header">
+			<div class = "type">
+			  <label>Choose Type:</label> <br>
+			  <input type="radio" name="type" value="Movie" checked>Movie <br>
+			  <input type="radio" name="type" value="TV Show">TV Show <br>
+			</div>
+			
+			<div class="image-container">
+				<img id="platform-image" src="amazon_logo.png" alt="Default Image">
+			</div>
+			<div class = "platformcontainer">
+			  <label>Choose Platform:</label> <br>
+			  <input type="radio" name="platform" value="Amazon Prime" checked>Amazon Prime <br>
+			  <input type="radio" name="platform" value="Hulu">Hulu <br>
+			  <input type="radio" name="platform" value="Netflix">Netflix <br>
+			  <input type="radio" name="platform" value="Disney+">Disney+ 
+			</div>
+		</header>
+		<main class="main">
+		<script>
+  // Function to update the title based on user selection
+function updateTitle() {
+    var type = document.querySelector('input[name="type"]:checked').value;
+    var platform = document.querySelector('input[name="platform"]:checked').value;
+    
+    var ratingTitleElement = document.getElementById("mapTitle");
+	ratingTitleElement.textContent = "Number of " + type + '(s) Per Country';
+	ratingTitleElement.style.color = getBackgroundColor(platform);
+
+	var ratingTitleElement = document.getElementById("lineTitle");
+	ratingTitleElement.textContent = "Trend in " + type + ' Duration Over the Years';
+	ratingTitleElement.style.color = getBackgroundColor(platform);
+	
+	var ratingTitleElement = document.getElementById("dirT");
+	ratingTitleElement.textContent = "Top 10 " + type + ' Directors';
+	ratingTitleElement.style.color = getBackgroundColor(platform);
+	
+	var ratingTitleElement = document.getElementById("castT");
+	ratingTitleElement.textContent = "Top 10 " + type + ' Casts';
+	ratingTitleElement.style.color = getBackgroundColor(platform);
+	
+	var ratingTitleElement = document.getElementById("ratingT");
+	ratingTitleElement.textContent = type + ' Rating Distribution';
+	ratingTitleElement.style.color = getBackgroundColor(platform);
+	
+	var container = document.querySelector("#map");
+    container.style.border = "1px solid " + getBackgroundColor(platform);
+	
+	var container = document.querySelector("#chart3");
+    container.style.border = "1px solid " + getBackgroundColor(platform);
+	
+	var container = document.querySelector("#chart2");
+    container.style.border = "1px solid " + getBackgroundColor(platform);
+	
+	var container = document.querySelector("#chart");
+    container.style.border = "1px solid " + getBackgroundColor(platform);
+	
+	var container = document.querySelector("#chart4");
+    container.style.border = "1px solid " + getBackgroundColor(platform);
+	
+  }
+  function getBackgroundColor(platform) {
+      switch (platform) {
+        case "Amazon Prime":
+          return "orange";
+        case "Hulu":
+          return "#0BDA51";
+        case "Netflix":
+          return "red";
+        case "Disney+":
+          return "#0096FF";
+        default:
+          return "white";
+      }
+    }
+  // Add event listeners to the radio buttons
+  var typeRadios = document.getElementsByName("type");
+  var platformRadios = document.getElementsByName("platform");
+  var platformImage = document.getElementById("platform-image");
+  
+  function changeImage() {
+    if (platformRadios[0].checked) {
+      platformImage.src = "amazon_logo.png";
+    } else if (platformRadios[1].checked) {
+      platformImage.src = "hulu_logo.png";
+    } else if (platformRadios[2].checked) {
+      platformImage.src = "netflix_logo.png";
+    } else if (platformRadios[3].checked) {
+      platformImage.src = "disney_logo.png";
+    }
+  }
+  
+  for (var i = 0; i < typeRadios.length; i++) {
+    typeRadios[i].addEventListener("change", updateTitle);
+  }
+  
+  for (var i = 0; i < platformRadios.length; i++) {
+    platformRadios[i].addEventListener("change", updateTitle);
+	platformRadios[i].addEventListener("change", changeImage);
+  }
+  
+  // Initial title update
+  //updateTitle();
+  window.addEventListener("DOMContentLoaded", updateTitle);
+</script>
+		
+		<div class="chart-title"> 
+			<div class='titlecontainer'> 
+				<h2 id="ratingT"> Rating Distribution </h2>
+			</div>
+			<div class='titlecontainer'>
+				<h2 id="mapTitle"> Number of (s) Per Country </h2>
+			</div>
+		
+		<div class="main_overview">
+		<div class="mapcontainer">
+			<title>Rating Bar Chart</title>
+			<svg id="chart3"></svg>
+			<script src="ratingchart.js"></script>
+		</div>
+		
+		<div class="mapcontainer">
+			<title>Interactive Map Visualization</title>
+			<div id="map"></div>
+			<div class="tooltip" style="display: none;"></div>
+			<svg class="legend" width="100" height="220">
+			  <g class="legend-scale">
+				<rect class="legend-scale-color"></rect>
+				<g class="legend-scale-labels"></g>
+			  </g>
+			</svg>
+			<script src="map.js"></script>
+		</div>
+		<div class='titlecontainer2' id="huluTVChartContainer"> 
+				<h2 id="dirT"> Top 10 Directors </h2>
+			</div>
+			<div class='titlecontainer2' id="huluChartContainer">
+				<h2 id="castT" id="huluChartContainer"> Top 10 Casts </h2>
+			</div>
+			<div class='titlecontainer2'>
+				<h2 id="lineTitle"> Trend in Duration Over the Years </h2>
+			</div>
+		<div class="3container">
+			<title>Director Bar Chart</title>
+			<svg id="chart2"></svg>
+			<script src="topDirector.js"></script>
+		</div>
+		
+		<div class="3container">
+			<title>Cast Bar Chart</title>
+			<svg id="chart"></svg>
+			<script src="topActor.js"></script>
+		</div>
+		
+		<div class="3container">
+			<title>Duration Line Chart</title>
+			<svg id="chart4"></svg>
+			<script src="durationlinegraph.js"></script>
+		</div>
+		
+		</div>
+		</main>
+		<footer class="footer">
+		</footer>
+
+    <script>
+        function openTab(event, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+      </script>
+  </body>
+</html>
