@@ -241,7 +241,7 @@ function handleMouseOver(event, d) {
         .attr("x", graphWidth / 2 + graphWidth/8)
         .attr("y", marginActor.top-30)
         .attr("text-anchor", "middle")
-        .text("Genre Count for Cast")
+        .text("Genre Overview of the Cast")
         .style("font-size", "15px")
         .attr("fill", "black");
 
