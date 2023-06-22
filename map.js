@@ -11,17 +11,17 @@ function reset() {
     );
 }
 const widthM = 550;
-const height = 400;
+const heightM = 400;
 
 const zoom = d3.zoom()
 			   .scaleExtent([1, 8])
 			   .on("zoom", zoomed);
 
 const svg = d3.select("#map")
-			  .attr("viewBox", [0, 0, widthM, height])
+			  .attr("viewBox", [0, 0, widthM, heightM])
 			  .append("svg")
 			  .attr("width", widthM)
-			  .attr("height", height)
+			  .attr("height", heightM)
 			  .on("click", reset);
 		
 const g = svg.append("g");
@@ -57,7 +57,7 @@ d3.json("https://datahub.io/core/geo-countries/r/countries.geojson").then(functi
 						 .scale(225)
 						 .center([114.1095, 22.3964])
 						.translate([0, 0])
-						.fitSize([widthM, height], mapData);
+						.fitSize([widthM, heightM], mapData);
 	const path = d3.geoPath().projection(projection);
 
 	d3.csv("StreamingPlatform.csv").then(function(data) {

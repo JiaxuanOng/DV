@@ -45,8 +45,8 @@ data.sort(function(a, b) {
         .range([height, 0]);
 
     var color = d3.scaleOrdinal()
-      .domain(["Netflix", "Amazon Prime", "Disney+", "Hulu"])
-      .range(["#d62728", "#1f77b4", "#ff7f0e", "#2ca02c"]);
+      .domain(["Netflix",  "Disney+","Amazon Prime", "Hulu"])
+      .range(["#d62728", "#1f77b4", "#ff7f0e","#2ca02c"]);
   
     // Create the line generator
     var line = d3.line()
@@ -99,7 +99,7 @@ data.sort(function(a, b) {
       tooltipMT.style("left", tooltipX + "px")
         .style("top", tooltipY + "px")
         .style("opacity", 1)
-        .text(closestDataPoint.count);
+        .html("<b><i>Number of Count:</b></i> " + closestDataPoint.count);
     })
     
     .on("mouseout", function(event, d) {

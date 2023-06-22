@@ -22,8 +22,8 @@ d3.csv("StreamingPlatform.csv").then(function (data) {
   
     // Define platform colors
     var color = d3.scaleOrdinal()
-      .domain(stackedData.flatMap(d => d.platforms.map(p => p.platform)))
-      .range(["#d62728", "#1f77b4", "#ff7f0e", "#2ca02c"]);
+    .domain(["Netflix",  "Disney+","Amazon Prime", "Hulu"])
+    .range(["#d62728", "#1f77b4","#ff7f0e", "#2ca02c"]);
   
     // Function to generate the HTML markup for the pie chart
 function createPieChartHTML(data, genre) {
@@ -42,7 +42,7 @@ function createPieChartHTML(data, genre) {
   
     var colorScale = d3.scaleOrdinal()
       .domain(data.map(d => d.platform))
-      .range(["#d62728", "#1f77b4", "#ff7f0e", "#2ca02c"]);
+      .range(["#d62728", "#ff7f0e","#1f77b4", "#2ca02c"]);
     
     svg += `<g transform="translate(${radius},${radius})">`;
     svg += `<text x="0" y="-${radius}" text-anchor="middle" class="genre-title">ooooo</text>`;
