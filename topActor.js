@@ -2,7 +2,7 @@
 const chartWidth = 400;
 const chartHeight = 400;
 const barHeight = 40;
-const margin = { top: 50, right: 20, bottom: 40, left: 120 };
+const marginActor = { top: 50, right: 20, bottom: 40, left: 120 };
 
 // Create the svg2 container
 //const svg2 = d3.select("#chart")
@@ -76,12 +76,12 @@ function showTooltip(content, x, y) {
 	// Create the scales
 	const xScale = d3.scaleLinear()
 	  .domain([0, d3.max(topThreeCast, d => d.count)])
-	  .range([margin.left, chartWidth - margin.right]);
+	  .range([marginActor.left, chartWidth - marginActor.right]);
 	//console.log(topThreeCast)
 
 	const yScale = d3.scaleBand()
 	  .domain(topThreeCast.map(d => d.cast))
-	  .range([margin.top, chartHeight - margin.bottom])
+	  .range([marginActor.top, chartHeight - marginActor.bottom])
 	  .padding(0.1);
 
 	/* Create the bars
@@ -91,9 +91,9 @@ function showTooltip(content, x, y) {
 	  .enter()
 	  .append("rect")
 	  .attr("fill", "white")
-	  .attr("x", margin.left)
+	  .attr("x", marginActor.left)
 	  .attr("y", d => yScale(d.cast))
-	  .attr("width", d => xScale(d.count) - margin.left)
+	  .attr("width", d => xScale(d.count) - marginActor.left)
 	  .attr("height", yScale.bandwidth());
 	  
 	*/
@@ -118,9 +118,9 @@ function showTooltip(content, x, y) {
       return "url(#gradient-green)"; // set the fill color for other cases
     }
   })
-  .attr("x", margin.left)
+  .attr("x", marginActor.left)
   .attr("y", d => yScale(d.cast))
-  .attr("width", d => xScale(d.count) - margin.left)
+  .attr("width", d => xScale(d.count) - marginActor.left)
   .attr("height", yScale.bandwidth())
 .on("mouseover", handleMouseOver)
 .on("mouseout", hideTooltip);
@@ -154,9 +154,9 @@ function handleMouseOver(event, d) {
     //.text("Cast: " + d.cast);
 
   // Create the SVG container for the bar chart
-  const margin = { top: 40, right: 10, bottom: 60, left: 50 };
-  const graphWidth = 300- margin.left - margin.right;
-  const graphHeight = 350  - margin.top - margin.bottom;
+  const marginActor = { top: 40, right: 10, bottom: 60, left: 50 };
+  const graphWidth = 300- marginActor.left - marginActor.right;
+  const graphHeight = 350  - marginActor.top - marginActor.bottom;
   const graphSvg = tooltip2.append("svg")
     .attr("width", 300)
     .attr("height", 350);
@@ -184,7 +184,7 @@ function handleMouseOver(event, d) {
 	
   var chart = graphSvg
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + marginActor.left + "," + marginActor.top + ")");
 
   // Create the bars in the bar chart
   chart.selectAll("rect")
@@ -239,7 +239,7 @@ function handleMouseOver(event, d) {
 		 graphSvg.append("text")
         .attr("class", "chart-title")
         .attr("x", graphWidth / 2 + graphWidth/8)
-        .attr("y", margin.top-30)
+        .attr("y", marginActor.top-30)
         .attr("text-anchor", "middle")
         .text("Genre Count for Cast")
         .style("font-size", "15px")
@@ -258,7 +258,7 @@ function handleMouseOver(event, d) {
 	chart.append("text")
 	  .attr("class", "x-label")
 	  .attr("x", graphWidth/2)
-	  .attr("y", margin.top + graphHeight + 20)
+	  .attr("y", marginActor.top + graphHeight + 20)
 	  .attr("text-anchor", "middle")
 	  //.attr("transform", "rotate(-90)")
 	  .text("Genre")
@@ -366,12 +366,12 @@ svg2
 
 	svg2.append("g")
 	  .attr("class", "x-axis")
-	  .attr("transform", `translate(0, ${chartHeight - margin.bottom})`)
+	  .attr("transform", `translate(0, ${chartHeight - marginActor.bottom})`)
 	  .call(xAxis)
 	  .append("text")
 	  .attr("class", "x-label")
 	  .attr("x", chartWidth / 2 + chartWidth / 8)
-	  .attr("y",  margin.bottom - 5)
+	  .attr("y",  marginActor.bottom - 5)
 	  .attr("fill", "white")
 	  .attr("text-anchor", "middle")
 	  //.attr("transform", "rotate(-90)")
@@ -379,7 +379,7 @@ svg2
 
 	svg2.append("g")
 	  .attr("class", "y-axis")
-	  .attr("transform", `translate(${margin.left}, 0)`)
+	  .attr("transform", `translate(${marginActor.left}, 0)`)
 	  .call(yAxis)
 	  .append("text")
 	  .attr("fill", "white")

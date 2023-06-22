@@ -7,10 +7,10 @@ function reset() {
     svg.transition().duration(750).call(
       zoom.transform,
       d3.zoomIdentity,
-      d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
+      d3.zoomTransform(svg.node()).invert([widthM / 2, height / 2])
     );
 }
-const width = 550;
+const widthM = 550;
 const height = 400;
 
 const zoom = d3.zoom()
@@ -18,9 +18,9 @@ const zoom = d3.zoom()
 			   .on("zoom", zoomed);
 
 const svg = d3.select("#map")
-			  .attr("viewBox", [0, 0, width, height])
+			  .attr("viewBox", [0, 0, widthM, height])
 			  .append("svg")
-			  .attr("width", width)
+			  .attr("width", widthM)
 			  .attr("height", height)
 			  .on("click", reset);
 		
@@ -57,7 +57,7 @@ d3.json("https://datahub.io/core/geo-countries/r/countries.geojson").then(functi
 						 .scale(225)
 						 .center([114.1095, 22.3964])
 						.translate([0, 0])
-						.fitSize([width, height], mapData);
+						.fitSize([widthM, height], mapData);
 	const path = d3.geoPath().projection(projection);
 
 	d3.csv("StreamingPlatform.csv").then(function(data) {
