@@ -282,3 +282,10 @@ body {
 .pie {
   width: 100%;
 }
+
+.highlight {
+  opacity: 1 !important;
+  fill-opacity: 1 !important;
+}
+
+

@@ -35,8 +35,8 @@
 }
 .legend {
 	position: absolute;
-	top: 150px;
-	right: 10px;
+	top: 180px;
+	right: 80px;
 	transform: rotate(-90deg);
 	margin-right: 30px;
 }
