@@ -1,5 +1,6 @@
 body {
-    background-color: rgba(0, 0, 0, 0.895);
+    background-color: black;
+    /* rgba(0, 0, 0, 0.895); */
 }
 
 .pie path:hover {
@@ -10,10 +11,6 @@ body {
 .stackedBar {
     width: 400px;
     height: 400px;
-}
-
-.legend {
-    font-size: 12px;
 }
 
 .pieFrame .title,
@@ -39,8 +36,12 @@ body {
     text-align: center;
 }
 
-  .axis text {
-    fill: white;
+  .axis {
+    color: white;
+  }
+
+  .axis .text {
+    color: white;
   }
   
   .lineMT {
@@ -48,7 +49,7 @@ body {
     height: 800px;
   }
 
-  .tooltip {
+  .tooltipBP {
     position: absolute;
     visibility: hidden;
     background-color: rgb(187, 240, 213);
@@ -84,7 +85,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .MTcontainer {
@@ -106,7 +107,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 9px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #fdfdfd;
   }
 
@@ -201,7 +202,7 @@ body {
   position: absolute;
   visibility: hidden;
   background-color: #fdfdfd;
-  border: 5px solid #110956;
+  border: 5px solid #06b0f3;
   padding: 10px;
   border-radius: 5px;
   font-size: 15px;
@@ -230,12 +231,13 @@ body {
 .tooltipSB {
   position: absolute;
   background-color: white;
-  border: 1px solid #ddd;
+  border: 2px solid #7b7878;
   border-radius: 5px;
   padding: 10px;
   pointer-events: none;
   opacity: 0;
 }
+
 .tooltipMT {
   position: absolute;
   background-color: rgb(223, 220, 220);

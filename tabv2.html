@@ -4,6 +4,8 @@
     <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Streaming Platform Dashboard</title>
   </head>
   <body>
     <div class="tabs">
@@ -20,9 +22,7 @@
           <div class="legendP-container">
             <div id="legendPContainer"></div>
             <script src="legend.js"></script>
-          </div>
-          
-  
+          </div>         
         <div class="totalMovies-container">
           <div id="totalMoviesContainer"></div>
           <script src="movie_num.js"></script>
@@ -57,7 +57,7 @@
           <h2 class="mttitle">
               Streaming Platform with the Most Movies and TV Shows
           </h2>
-      </div>
+        </div>
         </div>
 
         <div class="container">
@@ -87,7 +87,6 @@
             </h2>
             <div id="stackedBar" class="stackedBar"></div>
             <script src="stackedBar.js"></script>
-            <script src="legend.js"></script>
           </div>
         
           <div class="lineMT-container">
@@ -244,19 +243,19 @@ function updateTitle() {
 			<div class='titlecontainer2'>
 				<h2 id="lineTitle"> Trend in Duration Over the Years </h2>
 			</div>
-		<div class="container3">
+		<div class="Tcontainer">
 			<title>Director Bar Chart</title>
 			<svg id="chart2"></svg>
 			<script src="topDirector.js"></script>
 		</div>
 		
-		<div class="container3">
+		<div class="Tcontainer">
 			<title>Cast Bar Chart</title>
 			<svg id="chart"></svg>
 			<script src="topActor.js"></script>
 		</div>
 		
-		<div class="container3">
+		<div class="Tcontainer">
 			<title>Duration Line Chart</title>
 			<svg id="chart4"></svg>
 			<script src="durationlinegraph.js"></script>
@@ -266,28 +265,28 @@ function updateTitle() {
 		</main>
 
     <script>
-        function openTab(event, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+    function openTab(event, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(tabName).style.display = "block";
+                event.currentTarget.className += " active";
             }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            event.currentTarget.className += " active";
+        function autoDisplayOverview() {
+        var overviewTab = document.getElementById("Overview");
+        if (overviewTab) {
+            openTab(null, "Overview"); // Call openTab with "Overview" as the tabName
         }
-		function autoDisplayOverview() {
-    var overviewTab = document.getElementById("Overview");
-    if (overviewTab) {
-        openTab(null, "Overview"); // Call openTab with "Overview" as the tabName
     }
-}
 
-// Call the autoDisplayOverview function when the page has finished loading
-window.addEventListener("load", autoDisplayOverview);
+    // Call the autoDisplayOverview function when the page has finished loading
+    window.addEventListener("load", autoDisplayOverview);
       </script>
   </body>
 </html>

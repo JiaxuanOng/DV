@@ -30,10 +30,10 @@ function calculateBestPlatform(data) {
       .attr("width", 370) // Set the width of the SVG container
       .attr("height", 100); // Set the height of the SVG container
   
-    var tooltip = d3
+    var tooltipBP = d3
       .select("body")
       .append("div")
-      .attr("class", "tooltip")
+      .attr("class", "tooltipBP")
       .style("position", "absolute")
       .style("visibility", "hidden");
   
@@ -46,19 +46,19 @@ function calculateBestPlatform(data) {
         .attr("x", 30) // Set the x-coordinate for centering the logo
         .attr("y", 10)
         .on("mouseover", function () {
-            tooltip.style("visibility", "visible");
+            tooltipBP.style("visibility", "visible");
     
-            // Remove any existing content inside the tooltip
-            tooltip.html("");
+            // Remove any existing content inside the tooltipBP
+            tooltipBP.html("");
     
-            // Create a bar chart inside the tooltip
+            // Create a bar chart inside the tooltipBP
             var platformData = Array.from(platformCounts, ([platform, count]) => ({
               platform,
               count,
             }));
     
            // Create a bar chart inside the tooltip
-        var tooltipSvg = tooltip
+        var tooltipSvg = tooltipBP
         .append("svg")
         .attr("width", 450)
         .attr("height", 200);
@@ -93,7 +93,9 @@ function calculateBestPlatform(data) {
         chart.append("g")
         .attr("class", "y-axis")
         .call(yAxis);
-        var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+        var colorScale = d3.scaleOrdinal()
+        .domain(data.map(d => d.platform))
+        .range(["#d62728", "#ff7f0e", "#1f77b4", "#2ca02c"]);
         chart.selectAll(".bar")
         .data(platformData)
         .enter()
@@ -128,12 +130,12 @@ function calculateBestPlatform(data) {
 
           })
           .on("mousemove", function () {
-            tooltip
+            tooltipBP
               .style("top", d3.pointer(event)[1] + 100 + "px")
               .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
-            tooltip.style("visibility", "hidden");
+            tooltipBP.style("visibility", "hidden");
           });
     } else if (bestPlatform === "Amazon Prime") {
         
@@ -146,10 +148,10 @@ function calculateBestPlatform(data) {
         .attr("y", 10)
         .on("mouseover", function () {
             console.log(bestPlatform);
-            tooltip.style("visibility", "visible");
+            tooltipBP.style("visibility", "visible");
     
-            // Remove any existing content inside the tooltip
-            tooltip.html("");
+            // Remove any existing content inside the tooltipBP
+            tooltipBP.html("");
     
             // Create a bar chart inside the tooltip
             var platformData = Array.from(platformCounts, ([platform, count]) => ({
@@ -158,7 +160,7 @@ function calculateBestPlatform(data) {
             }));
     
            // Create a bar chart inside the tooltip
-        var tooltipSvg = tooltip
+        var tooltipSvg = tooltipBP
         .append("svg")
         .attr("width", 450)
         .attr("height", 200);
@@ -193,7 +195,10 @@ function calculateBestPlatform(data) {
         chart.append("g")
         .attr("class", "y-axis")
         .call(yAxis);
-        var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+        var colorScale = d3.scaleOrdinal()
+        .domain(data.map(d => d.platform))
+        .range(["#d62728", "#ff7f0e", "#1f77b4", "#2ca02c"]);
+      
         chart.selectAll(".bar")
         .data(platformData)
         .enter()
@@ -228,12 +233,12 @@ function calculateBestPlatform(data) {
 
           })
           .on("mousemove", function () {
-            tooltip
+            tooltipBP
               .style("top", d3.pointer(event)[1] + 100 + "px")
               .style("left", d3.pointer(event)[0] + 700 + "px");
           })
           .on("mouseout", function () {
-            tooltip.style("visibility", "hidden");
+            tooltipBP.style("visibility", "hidden");
           });
     } else if (bestPlatform === "Disney+") {
         svgBP
@@ -244,10 +249,10 @@ function calculateBestPlatform(data) {
         .attr("x", 30) // Set the x-coordinate for centering the logo
         .attr("y", 10)
         .on("mouseover", function () {
-            tooltip.style("visibility", "visible");
+            tooltipBP.style("visibility", "visible");
     
-            // Remove any existing content inside the tooltip
-            tooltip.html("");
+            // Remove any existing content inside the tooltipBP
+            tooltipBP.html("");
     
             // Create a bar chart inside the tooltip
             var platformData = Array.from(platformCounts, ([platform, count]) => ({
@@ -256,7 +261,7 @@ function calculateBestPlatform(data) {
             }));
     
            // Create a bar chart inside the tooltip
-        var tooltipSvg = tooltip
+        var tooltipSvg = tooltipBP
         .append("svg")
         .attr("width", 450)
         .attr("height", 200);
@@ -291,7 +296,9 @@ function calculateBestPlatform(data) {
         chart.append("g")
         .attr("class", "y-axis")
         .call(yAxis);
-        var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+        var colorScale = d3.scaleOrdinal()
+        .domain(data.map(d => d.platform))
+        .range(["#d62728", "#ff7f0e", "#1f77b4", "#2ca02c"]);
         chart.selectAll(".bar")
         .data(platformData)
         .enter()
@@ -326,12 +333,12 @@ function calculateBestPlatform(data) {
 
           })
           .on("mousemove", function () {
-            tooltip
+            tooltipBP
               .style("top", d3.pointer(event)[1] + 100 + "px")
               .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
-            tooltip.style("visibility", "hidden");
+            tooltipBP.style("visibility", "hidden");
           });
     } else if (bestPlatform === "Hulu") {
         svgBP
@@ -342,10 +349,10 @@ function calculateBestPlatform(data) {
         .attr("x", 30) // Set the x-coordinate for centering the logo
         .attr("y", 10)
         .on("mouseover", function () {
-            tooltip.style("visibility", "visible");
+            tooltipBP.style("visibility", "visible");
     
-            // Remove any existing content inside the tooltip
-            tooltip.html("");
+            // Remove any existing content inside the tooltipBP
+            tooltipBP.html("");
     
             // Create a bar chart inside the tooltip
             var platformData = Array.from(platformCounts, ([platform, count]) => ({
@@ -354,7 +361,7 @@ function calculateBestPlatform(data) {
             }));
     
            // Create a bar chart inside the tooltip
-        var tooltipSvg = tooltip
+        var tooltipSvg = tooltipBP
         .append("svg")
         .attr("width", 450)
         .attr("height", 200);
@@ -389,7 +396,9 @@ function calculateBestPlatform(data) {
         chart.append("g")
         .attr("class", "y-axis")
         .call(yAxis);
-        var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+        var colorScale = d3.scaleOrdinal()
+        .domain(data.map(d => d.platform))
+        .range(["#d62728", "#ff7f0e", "#1f77b4", "#2ca02c"]);
         chart.selectAll(".bar")
         .data(platformData)
         .enter()
@@ -424,12 +433,12 @@ function calculateBestPlatform(data) {
 
           })
           .on("mousemove", function () {
-            tooltip
+            tooltipBP
               .style("top", d3.pointer(event)[1] + 50 + "px")
               .style("left", d3.pointer(event)[0] + 10 + "px");
           })
           .on("mouseout", function () {
-            tooltip.style("visibility", "hidden");
+            tooltipBP.style("visibility", "hidden");
           });
     }
   }

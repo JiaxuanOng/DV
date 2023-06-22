@@ -1,8 +1,8 @@
 // Define the legend data
 var legendData = [
-    { platform: "Netflix", color: "#d62728" },
-    { platform: "Amazon Prime", color: "#1f77b4"},
-    { platform: "Disney+", color: "#ff7f0e" },
+    { platform: "Netflix", color: "#d62728" },    
+    { platform: "Disney+", color:  "#1f77b4"},
+    { platform: "Amazon Prime", color: "#ff7f0e"},
     { platform: "Hulu", color:  "#2ca02c" }
   ];
   
