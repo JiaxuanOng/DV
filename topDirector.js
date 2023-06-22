@@ -202,7 +202,7 @@ function showTooltip(content, x, y) {
         .attr("x", graphWidth / 2+ graphWidth/8)
         .attr("y", margin.top - 27)
         .attr("text-anchor", "middle")
-        .text("Genre Count for Director")
+        .text("Genre Overview of the Directors")
         .style("font-size", "15px")
         .attr("fill", "black");
 

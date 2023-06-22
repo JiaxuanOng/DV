@@ -7,7 +7,7 @@ function reset() {
     svg.transition().duration(750).call(
       zoom.transform,
       d3.zoomIdentity,
-      d3.zoomTransform(svg.node()).invert([widthM / 2, height / 2])
+      d3.zoomTransform(svg.node()).invert([widthM / 2, heightM / 2])
     );
 }
 const widthM = 550;
@@ -129,7 +129,7 @@ d3.json("https://datahub.io/core/geo-countries/r/countries.geojson").then(functi
 		d3.select(this).attr("stroke", "white")
 		.transition()
       .duration(2000)
-      .attr("transform", "scale(1.1)");
+      .attr("transform", "scale(1.05)");
 		// Get mouse position
 		const [x, y] = d3.pointer(event);
 		// Display tooltip with country name and show count
