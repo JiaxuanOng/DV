@@ -2,7 +2,7 @@
 <html>
   <head>
     <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
     <div class="tabs">
@@ -11,43 +11,104 @@
     </div>
 
     <div id="Overview" class="tabcontent">
-      <!-- Dashboard 1 -->
-        <h2>Overview</h2>
+        <!-- Dashboard 1 -->
+        <h1 class="Overview">Overview</h1>
+      
+        <!-- New container for total movies -->
+        <div class="MTcontainer">
+          <div class="legendP-container">
+            <div id="legendPContainer"></div>
+            <script src="legend.js"></script>
+          </div>
+          <div class = "releaseYearContainer">
+            <label>Year:</label> <br>
+            <input type="radio" name="year" value="All Years" checked>All<br>
+            <input type="radio" name="year" value="2019">2019 <br>
+            <input type="radio" name="year" value="2020">2020 <br>
+            <input type="radio" name="year" value="2021">2021 
+          </div>
+          
+  
+        <div class="totalMovies-container">
+          <div id="totalMoviesContainer"></div>
+          <script src="movie_num.js"></script>
+          <h2 class="mttitle">
+            Total Movies
+          </h2>
+        </div>
+        <div class="totalTVs-container">
+            <div id="totalTVsContainer"></div>
+            <script src="tv_num.js"></script>
+            <h2 class="mttitle">
+              Total TV Show
+            </h2>  
+        </div>
+        <div class="totalCasts-container">
+          <div id="totalCastsContainer"></div>
+          <script src="cast_num.js"></script>
+          <h2 class="mttitle">
+            Total Casts
+          </h2>  
+        </div>
+        <div class="totalDirectors-container">
+          <div id="totalDirectorsContainer"></div>
+          <script src="director_num.js"></script>
+          <h2 class="mttitle">
+            Total Directors
+          </h2>  
+        </div>
+        <div class="bestPlatform-container">
+          <div id="bestPlatformContainer"></div>
+          <script src="bestplatform.js"></script>
+          <h2 class="mttitle">
+              Streaming Platform with the Most Movies and TV Shows
+          </h2>
+      </div>
+        </div>
+
         <div class="container">
-            <div class="pie-container">
-              <h2 class="title">
-                Distribution of Movies and TV Shows
-              </h2>
-              <div id="pie1" class="pie"></div>
-              <div id="pie2" class="pie"></div>
-              <div id="pie3" class="pie"></div>
-              <div id="pie4" class="pie"></div>
+          <div class="pieFrame">
+            <h2 class="title">
+              Distribution of Movies and TV Shows
+            </h2>
+            <div class="pie-grid">
+              <div class="pie-container">
+                <div id="pie1" class="pie"></div>
+              </div>
+              <div class="pie-container">
+                <div id="pie2" class="pie"></div>
+              </div>
+              <div class="pie-container">
+                <div id="pie3" class="pie"></div>
+              </div>
+              <div class="pie-container">
+                <div id="pie4" class="pie"></div>
+              </div>
               <script src="pie.js"></script>
             </div>
-          
-            <div class="stackedBar-container">
-              <h2 class="title">
-                Overall Genre Distribution
-              </h2>
-              <div id="stackedBar" class="stackedBar"></div>
-              <script src="stackedBar.js"></script>
-            </div>
-          
-            <div class="lineMT-container">
-              <h2 class="title">
-                Number of Movies and TV Shows
-              </h2>
-              <div id="lineMT" class="lineMT"></div>
-              <script src="lineMT.js"></script>
-            </div>
+          </div>
+          <div class="stackedBar-container">
+            <h2 class="title">
+              Overall Genre Distribution
+            </h2>
+            <div id="stackedBar" class="stackedBar"></div>
+            <script src="stackedBar.js"></script>
+            <script src="legend.js"></script>
           </div>
         
-       
-    </div>
+          <div class="lineMT-container">
+            <h2 class="title">
+              Number of Movies and TV Shows
+            </h2>
+            <div id="lineMT" class="lineMT"></div>
+            <script src="lineMT.js"></script>
+          </div>
+        </div>
+      </div>
 
     <div id="Tab2" class="tabcontent">
       <!-- Dashboard 2 -->
-	  <div class="container2">
+      <div class="container2">
 		<header class="header">
 			<div class = "type">
 			  <label>Choose Type:</label> <br>
@@ -212,44 +273,6 @@ function updateTitle() {
 		</main>
 		<footer class="footer">
 		</footer>
-	
-<!-- 
-    <div id="Tab3" class="tabcontent">
-      <div class="custom-alignment">
-        <h2>
-          Monthly Comparison of Airline Prices across Countries: Visualizing
-          Data in a Barplot
-        </h2>
-        <label for="from-country-select">From Country:</label>
-        <select id="from-country-select"></select>
-      </div>
-      <div class="custom-alignment">
-        <label for="dest-country-select">Destination Country:</label>
-        <select id="dest-country-select"></select>
-      </div>
-      <div class="custom-alignment">
-        <label for="sorting-select">Sort According to:</label>
-        <select id="sorting-select">
-          <option value="airlineAsc">Airline (A-Z)</option>
-          <option value="airlineDesc">Airline (Z-A)</option>
-          <option value="priceAsc">($) Price (Low to High)</option>
-          <option value="priceDesc">($) Price (High to Low)</option>
-        </select>
-      </div>
-      <svg height="670" width="1100"></svg>
-      <script src="bar.js"></script>
-      <div class="custom-alignment">
-        <h2>
-          CO2 Percentage Comparison: Packed Bubble Plot of Selected Country to All Other
-          Countries
-        </h2>
-        <label for="country">Select a country:</label>
-        <select id="country"></select>
-        <div id="pie"></div>
-        <div class="tooltip2"></div>
-        <script src="bubble.js"></script>
-      </div>
-    </div> -->
 
     <script>
         function openTab(event, tabName) {
