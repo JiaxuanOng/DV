@@ -129,7 +129,7 @@ d3.json("https://datahub.io/core/geo-countries/r/countries.geojson").then(functi
 		d3.select(this).attr("stroke", "white")
 		.transition()
       .duration(2000)
-      .attr("transform", "scale(1.1)");
+      .attr("transform", "scale(1.05)");
 		// Get mouse position
 		const [x, y] = d3.pointer(event);
 		// Display tooltip with country name and show count
