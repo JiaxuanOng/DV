@@ -116,7 +116,7 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             // Check if the platform is "Disney+" and the type is "TV Show"
             if (platform.key === "Disney+") {
                 tooltipPie
-                    .style("top", (y + 500) + "px") // Adjust the y position specifically for "Disney+" TV show
+                    .style("top", (y + 600) + "px") // Adjust the y position specifically for "Disney+" TV show
                     .style("left", (x + 200) + "px");
             }
             
