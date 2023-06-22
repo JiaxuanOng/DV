@@ -120,12 +120,6 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
                     .style("left", (x + 200) + "px");
             }
             
-            else if (platform.key === "Netflix") {
-                tooltipPie
-                    .style("top", (y + 500) + "px") // Adjust the y position specifically for "Disney+" TV show
-                    .style("left", (x + 300) + "px");
-            }
-            
             else {
                 tooltipPie
                     .style("top", (y + 500) + "px")
