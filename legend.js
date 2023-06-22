@@ -64,18 +64,10 @@ function highlightPlatform(platform) {
   var isActive = d3.select(".legend-item." + platform.replace(/\s/g, '').replace("+", "\\+")).classed("highlight");
 
   // Set the opacity of the pie chart elements based on whether the clicked legend item is active
-  d3.select("#pie1").selectAll("path").style("opacity", (d) =>
-    d.data.platform === platform ? (isActive ? 1 : (isActive ? 0.1 : 1)) : (isActive ? 0.1 : 1)
-  );
-  d3.select("#pie2").selectAll("path").style("opacity", (d) =>
-    d.data.platform === platform ? (isActive ? 1 : (isActive ? 0.1 : 1)) : (isActive ? 0.1 : 1)
-  );
-  d3.select("#pie3").selectAll("path").style("opacity", (d) =>
-    d.data.platform === platform ? (isActive ? 1 : 0.1) : (isActive ? 0.1 : 1)
-  );
-  d3.select("#pie4").selectAll("path").style("opacity", (d) =>
-    d.data.platform === platform ? (isActive ? 1 : 0.1) : (isActive ? 0.1 : 1)
-  );
+  d3.select("#pie1").selectAll("path").style("opacity", (d) => (d.platform === platform ? (isActive ? 1 : (isActive ? 0.1 : 1)) : (isActive ? 0.1 : 1)));
+  d3.select("#pie2").selectAll("path").style("opacity", (d) => (d.platform === platform ? (isActive ? 1 : (isActive ? 0.1 : 1)) : (isActive ? 0.1 : 1)));
+  d3.select("#pie3").selectAll("path").style("opacity", (d) => (d.platform === platform ? (isActive ? 1 : (isActive ? 0.1 : 1)) : (isActive ? 0.1 : 1)));
+  d3.select("#pie4").selectAll("path").style("opacity", (d) => (d.platform === platform ? (isActive ? 1 : (isActive ? 0.1 : 1)) : (isActive ? 0.1 : 1)));
 
   // Set the opacity and stroke width of the stacked bar chart elements based on whether the clicked legend item is active
   d3.select("#stackedBar")
