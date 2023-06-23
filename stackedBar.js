@@ -22,7 +22,7 @@ d3.csv("StreamingPlatform.csv").then(function (data) {
 
   // Define platform colors
   var color = d3.scaleOrdinal()
-  .domain(["Netflix",  "Disney+","Amazon Prime", "Hulu"])
+  .domain(["Netflix",  "Disney Plus","Amazon Prime", "Hulu"])
   .range(["#d62728", "#1f77b4","#ff7f0e", "#2ca02c"]);
 
   // Function to generate the HTML markup for the pie chart

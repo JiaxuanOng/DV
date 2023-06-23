@@ -45,7 +45,7 @@ data.sort(function(a, b) {
         .range([height, 0]);
 
     var color = d3.scaleOrdinal()
-      .domain(["Netflix",  "Disney+","Amazon Prime", "Hulu"])
+      .domain(["Netflix",  "Disney Plus","Amazon Prime", "Hulu"])
       .range(["#d62728", "#1f77b4", "#ff7f0e","#2ca02c"]);
   
     // Create the line generator

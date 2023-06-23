@@ -240,7 +240,7 @@ function calculateBestPlatform(data) {
           .on("mouseout", function () {
             tooltipBP.style("visibility", "hidden");
           });
-    } else if (bestPlatform === "Disney+") {
+    } else if (bestPlatform === "Disney Plus") {
         svgBP
         .append("image")
         .attr("xlink:href", "disney_logo.png")

@@ -111,7 +111,7 @@ function showTooltip(content, x, y) {
 	else if (selectedPlatform === "Netflix") {
       return "url(#gradient-red)"; // set the fill color for the condition
     }
-	else if (selectedPlatform === "Disney+") {
+	else if (selectedPlatform === "Disney Plus") {
       return "url(#gradient-blue)"; // set the fill color for the condition
     }
 	else {
@@ -204,7 +204,7 @@ function handleMouseOver(event, d) {
 	else if (selectedPlatform === "Netflix") {
       return "red"; // set the fill color for the condition
     }
-	else if (selectedPlatform === "Disney+") {
+	else if (selectedPlatform === "Disney Plus") {
       return "blue"; // set the fill color for the condition
     }
 	else {

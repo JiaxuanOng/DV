@@ -2,7 +2,7 @@
 var legendData = [
   { platform: "Netflix", color: "#d62728" },    
   { platform: "Amazon Prime", color: "#ff7f0e" }, 
-   { platform: "Disney+", color: "#1f77b4" },
+   { platform: "Disney Plus", color: "#1f77b4" },
   { platform: "Hulu", color: "#2ca02c" }
 ];
 
@@ -34,20 +34,27 @@ legendItems
 
 // Add event listeners to the legend items
 
-legendItems.on("click", function (event, d) {
-  var platform = d.platform;
-  var selectedLegend = d3.select(this);
+legendItems
+  .on("mouseover", function () {
+    d3.select(this).style("transform", "scale(1.1)"); // Apply floating effect on hover
+  })
+  .on("mouseout", function () {
+    d3.select(this).style("transform", "scale(1)"); // Remove floating effect on mouseout
+  })
+  .on("click", function (event, d) {
+    var platform = d.platform;
+    var selectedLegend = d3.select(this);
 
-  // Toggle the highlight class on the clicked legend item
-  var isActive = selectedLegend.classed("highlight");
-  selectedLegend.classed("highlight", !isActive);
+    // Toggle the highlight class on the clicked legend item
+    var isActive = selectedLegend.classed("highlight");
+    selectedLegend.classed("highlight", !isActive);
 
-  // Toggle the highlight class on the corresponding graph elements
-  d3.selectAll(".bar." + platform.replace("+", "\\+")).classed("highlight", !isActive);
+    // Toggle the highlight class on the corresponding graph elements
+    d3.selectAll(".bar." + platform.replace("+", "\\+")).classed("highlight", !isActive);
 
-  console.log(platform);
-  highlightPlatform(platform);
-});
+    console.log(platform);
+    highlightPlatform(platform);
+  });
 
 
 // Click event handler for legend items
@@ -58,6 +65,8 @@ function legendClickHandler(clickedData) {
   // Highlight the clicked platform in the other graphs
   highlightPlatform(clickedPlatform);
 }
+
+
 // Function to highlight the selected platform in other graphs
 function highlightPlatform(platform) {
   // Check if the clicked legend item has the highlight class

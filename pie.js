@@ -30,7 +30,7 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
         "Netflix": d3.scaleOrdinal().range(["#F71013", "#F7A4A5"]),
         "Amazon Prime": d3.scaleOrdinal().range(["#F7651B", "#F6C3A9"]),
         "Hulu": d3.scaleOrdinal().range(["#43D411", "#C0F7AD"]),
-        "Disney+": d3.scaleOrdinal().range(["#074CF8", "#AAC0F6"])
+        "Disney Plus": d3.scaleOrdinal().range(["#074CF8", "#AAC0F6"])
         // Add more platforms and corresponding color scales if needed
     };
     
@@ -86,6 +86,10 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             // Use the custom color scale based on platform
             return colorScales[platform.key](index);
         })
+        .each(function(d) {
+            // Set the platform property of each pie chart element
+            d.platform = platform.key;
+        })
         .on("mouseover", function(event, d) {
             var tooltipText = "Count of <b>" + d.data[0] + "</b>" + " in <b>" + platform.key + "</b>" + ": <h2 style='text-align: center;'>" + d.data[1];
 
@@ -113,10 +117,10 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
                 x = x - tooltipPie.node().getBoundingClientRect().width; // Adjust the x position for right-hand side charts
             }
         
-            // Check if the platform is "Disney+" and the type is "TV Show"
-            if (platform.key === "Disney+") {
+            // Check if the platform is "Disney Plus" and the type is "TV Show"
+            if (platform.key === "Disney Plus") {
                 tooltipPie
-                    .style("top", (y + 600) + "px") // Adjust the y position specifically for "Disney+" TV show
+                    .style("top", (y + 600) + "px") // Adjust the y position specifically for "Disney Plus" TV show
                     .style("left", (x + 200) + "px");
             }
             
