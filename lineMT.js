@@ -129,4 +129,19 @@ data.sort(function(a, b) {
       .attr("class", "axis")
       .call(d3.axisLeft(y));
 
+    svgMT.append("text")
+    .attr("class", "y-axis-label")
+    .attr("x", -20)
+    .attr("y", 0)
+    .attr("fill", "white")
+    .attr("text-anchor", "start")
+    .text('Count');
+    
+    svgMT.append("text")
+      .attr("class", "x-axis-label")
+      .attr("x", width+15 )
+      .attr("y", height + margin.bottom - 10)
+      .attr("fill", "white")
+      .text("Release Year");
+
 });

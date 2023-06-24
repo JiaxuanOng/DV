@@ -59,13 +59,13 @@ function createPieChartHTML(data, genre) {
 }
   // Set up the chart dimensions
   var margin = {top: 10, right: 10, bottom: 25, left: 55};
-  var width = 430 - margin.left - margin.right;
+  var width = 450 - margin.left - margin.right;
   var height = 480 - margin.top - margin.bottom;
 
   // Create the SVG container
   var svgSB = d3.select("#stackedBar")
     .append("svg")
-    .attr("width", 100 + width + margin.left + margin.right)
+    .attr("width", 600)
     .attr("height", 100+height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -135,4 +135,19 @@ function createPieChartHTML(data, genre) {
   svgSB.append("g")
     .attr("class", "axis")
     .call(d3.axisLeft(y));
+
+  svgSB.append("text")
+  .attr("class", "y-axis-label")
+  .attr("x", -20)
+  .attr("y", 0)
+  .attr("fill", "white")
+  .attr("text-anchor", "start")
+  .text('Count');
+  
+  svgSB.append("text")
+  .attr("class", "x-axis-label")
+  .attr("x", width+95 )
+  .attr("y", height + margin.bottom - 10)
+  .attr("fill", "white")
+  .text("Genre");
 });
