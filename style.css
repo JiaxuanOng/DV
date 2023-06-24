@@ -68,7 +68,7 @@ body {
   margin-right: 10px;
   display: inline-block;
   vertical-align: top;
-  border: 1px solid rgba(255, 255, 255, 0.54); /* Add red border */
+  border: 2px solid rgba(255, 255, 255, 0.54); /* Add red border */
   border-radius: 15px;
   padding: 10px; /* Add padding for spacing */
 }
@@ -80,12 +80,12 @@ body {
   margin-top: 10px;
   width: 400px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.54);
+  border: 2px solid rgba(255, 255, 255, 0.54);
   border-radius: 15px;
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.5);
 }
 
 .MTcontainer {
@@ -96,19 +96,10 @@ body {
 
   .legendP-container {
     text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    border: 2px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 9px;
     margin-bottom: 10px;
-  }
-
-  .releaseYearContainer{
-    text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.54);
-    border-radius: 15px;
-    padding: 9px;
-    margin-bottom: 5px;
-    color: #fdfdfd;
   }
 
   #legendPContainer {
@@ -119,7 +110,7 @@ body {
 
 .totalMovies-container {
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    border: 2px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 2px;
     margin-bottom: 10px;
@@ -134,7 +125,7 @@ body {
   
   .totalTVs-container {
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    border: 2px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 2px;
     margin-bottom: 10px;
@@ -149,7 +140,7 @@ body {
 
   .totalCasts-container {
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    border: 2px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 2px;
     margin-bottom: 10px;
@@ -164,7 +155,7 @@ body {
 
   .totalDirectors-container {
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    border: 2px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 2px;
     margin-bottom: 10px;
@@ -179,7 +170,7 @@ body {
   
   .bestPlatform-container {
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    border: 2px solid rgba(255, 255, 255, 0.54);
     border-radius: 15px;
     padding: 5px;
     margin-bottom: 10px;
