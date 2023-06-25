@@ -100,7 +100,7 @@ data.sort(function(a, b) {
       tooltipMT.style("left", tooltipX + "px")
         .style("top", tooltipY + "px")
         .style("opacity", 1)
-        .html("<b><i>Number of Count:</b></i> " + closestDataPoint.count);
+        .html("<b><i>Count:</b></i> " + closestDataPoint.count);
     })
     
     .on("mouseout", function(event, d) {
