@@ -15,7 +15,8 @@ data.sort(function(a, b) {
 });
 
   // Count the total frequency of all types for each release year and platform
-  var countedData = d3.rollup(data, v => v.length, d => d.release_year, d => d.Platform);
+  var countedData = d3.rollup(data,
+     v => new Set(v.map(d => d.title)).size, d => d.release_year, d => d.Platform);
 
     // Extract the unique platforms from the data
     var platforms = Array.from(new Set(data.map(d => d.Platform)));

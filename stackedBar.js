@@ -10,7 +10,7 @@ d3.csv("StreamingPlatform.csv").then(function (data) {
     genre: genre,
     platforms: Array.from(platformData, ([platform, movies]) => ({
       platform: platform,
-      count: movies.length
+      count: new Set(movies.map(d => d.title)).size
     }))
   }));
 
@@ -26,6 +26,7 @@ d3.csv("StreamingPlatform.csv").then(function (data) {
   .range(["#d62728", "#1f77b4","#ff7f0e", "#2ca02c"]);
 
   // Function to generate the HTML markup for the pie chart
+// Function to generate the HTML markup for the pie chart
 function createPieChartHTML(data, genre) {
   var radius = 100;
   var diameter = radius * 2;
@@ -40,12 +41,25 @@ function createPieChartHTML(data, genre) {
 
   var arcs = pie(data);
 
-  var colorScale = d3.scaleOrdinal()
+  if (genre === "International") {
+    var colorScale = d3.scaleOrdinal()
+      .domain(data.map(d => d.platform))
+      .range(["#d62728", "#ff7f0e", "#2ca02c", "#1f77b4"]);
+  } 
+  else if (genre === "Family"){
+    var colorScale = d3.scaleOrdinal()
     .domain(data.map(d => d.platform))
-    .range(["#d62728", "#ff7f0e","#1f77b4", "#2ca02c"]);
+    .range(["#ff7f0e", "#d62728", "#1f77b4", "#2ca02c"]);
+    
+  }
+    else {
+    var colorScale = d3.scaleOrdinal()
+      .domain(data.map(d => d.platform))
+      .range([ "#ff7f0e", "#d62728","#2ca02c" ,"#1f77b4"]);
+  }
   
   svg += `<g transform="translate(${radius},${radius})">`;
-  svg += `<text x="0" y="-${radius}" text-anchor="middle" class="genre-title">ooooo</text>`;
+  svg += `<text x="0" y="-${radius}" text-anchor="middle" class="genre-title">${genre}</text>`; // Display genre as the title
   svg += arcs
     .map(d => {
       var path = arc(d);
@@ -57,6 +71,7 @@ function createPieChartHTML(data, genre) {
 
   return svg;
 }
+
   // Set up the chart dimensions
   var margin = {top: 10, right: 10, bottom: 25, left: 55};
   var width = 450 - margin.left - margin.right;

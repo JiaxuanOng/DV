@@ -8,7 +8,13 @@ const margin = {
 };
 
 d3.csv('StreamingPlatform.csv').then(function(data) {
-    var groupedData = {};
+    var groupedData = d3.rollup(
+        data,
+        v => d3.rollup(v, v => new Set(v.map(d => d.title)).size, d => d.type),
+        d => d.Platform
+    );
+
+   
     data.forEach(function(d) {
         var platform = d.Platform;
         var type = d.type;
@@ -20,10 +26,11 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
         groupedData[platform][type]++;
     });
 
-    // Convert the grouped data into an array of objects
-    var nestedData = Object.entries(groupedData).map(function([platform, counts]) {
-        return { key: platform, values: Object.entries(counts) };
-    });
+     // Convert the grouped data into an array of objects
+     var nestedData = Array.from(groupedData, ([platform, counts]) => ({
+        platform: platform,
+        values: Array.from(counts, ([type, count]) => [type, count])
+    }));
 
     // Define custom color scales for each platform
     var colorScales = {
@@ -84,14 +91,14 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
         .attr("d", arc)
         .attr("fill", function (d, index) {
             // Use the custom color scale based on platform
-            return colorScales[platform.key](index);
+            return colorScales[platform.platform](index);
         })
         .each(function(d) {
             // Set the platform property of each pie chart element
-            d.platform = platform.key;
+            d.platform = platform.platform;
         })
         .on("mouseover", function(event, d) {
-            var tooltipText = "Count of <b>" + d.data[0] + "</b>" + " in <b>" + platform.key + "</b>" + ": <h2 style='text-align: center;'>" + d.data[1];
+            var tooltipText = "Count of <b>" + d.data[0] + "</b>" + " in <b>" + platform.platform + "</b>" + ": <h2 style='text-align: center;'>" + d.data[1];
 
             // Calculate the centroid of the arc
             var centroid = arc.centroid(d);
@@ -118,7 +125,7 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             }
         
             // Check if the platform is "Disney Plus" and the type is "TV Show"
-            if (platform.key === "Disney Plus") {
+            if (platform.platform === "Disney Plus") {
                 tooltipPie
                     .style("top", (y + 600) + "px") // Adjust the y position specifically for "Disney Plus" TV show
                     .style("left", (x + 200) + "px");
@@ -141,7 +148,7 @@ d3.csv('StreamingPlatform.csv').then(function(data) {
             .attr("x", radius+30)
             .attr("y", 55) // Adjust the y-coordinate to move the text above the pie charts
             .attr("text-anchor", "middle")
-            .text(platform.key)
+            .text(platform.platform)
             .style("font-size", "20px")
             .style("fill", "white"); // Set the font color to white
 
